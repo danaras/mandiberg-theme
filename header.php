@@ -24,7 +24,6 @@
 						  'walker' => new Description_Walker 
 						  ) );
 
-
 /*
 
 	- things still to do
@@ -35,13 +34,12 @@
 
 
 
-
-
-
 	- reference links
 		- http://wordpress.stackexchange.com/questions/191352/help-needed-for-custom-walker-menu
 		- *** http://stackoverflow.com/questions/24180836/custom-wordpress-walker-advice-needed
 		- https://codex.wordpress.org/Class_Reference/Walker
+
+		- http://wordpress.stackexchange.com/questions/36812/how-to-style-current-page-menu-item-when-using-a-walker
 
 
 
