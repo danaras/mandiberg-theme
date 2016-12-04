@@ -55,12 +55,42 @@ p{
 }
 
 .subcategory{
-	opacity: 0.3;
 	
+	
+}
+
+.sub-active{
+	font-style: italic;
 }
 
 .active{
 	font-style: italic;
 }
+
+
+.subcategories{
+	
+}
+
+
+
+
+/*
+
+.category-section-##
+
+	.category
+		.active
+		.notactive
+
+	.subcategories > .subcategory    .select
+		.sub-active
+		.sub-notactive
+
+
+*/
+
+
+
 
 

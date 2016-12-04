@@ -75,22 +75,23 @@
 
 	        $classes = empty( $item->classes ) ? array() : (array) $item->classes; //array of all classes associated with each category + subcategory
 
-	        $class_names = in_array("current-menu-item", $item->classes) ? ' active' : 'notactive'; // conditional for if/else the array of classes ^^ is current or not
+	        $category_names = in_array("current-menu-item", $item->classes) ? ' active' : 'notactive';
+	        $subcategory_names = in_array("current-menu-item", $item->classes) ? 'sub-active' : 'sub-notactive'; // conditional for if/else the array of classes ^^ is current or not
 
 	        //wraps category section and category name (see end_el for end of ca)
 	        if ( $depth === 0 ) {
 	        	$output .= sprintf( "\n<span id='category-section-".$item->ID."'><a href='%s' class='category %s' id='category-".$item->ID."' > %s</a>\n",
 		            $item->url,
-		            $class_names, //if $classes[4] === current_page_item
+		            $category_names, //if $classes[4] === current_page_item
 		            $item->title
 		        );
 	        } 	
 
 	    	//if the depth of the menu exceeds the top level (0), generate a new wrapper for each object.
 	    	if ( $depth > 0 ) {
-		        $output .= sprintf( "\n<a class='subcategory' id='subcategory-".$item->ID."' href='%s' %s >%s</a>,\n",
+		        $output .= sprintf( "\n<a href='%s' class='subcategory %s' id='subcategory-".$item->ID."'  >%s,</a>\n",
 		            $item->url,
-		            ( $item->object_id === get_the_ID() ) ? ' class="category"' : '',
+		            $subcategory_names, //if $classes[4] === current_page_item
 		            $item->title
 		        );
 	    	}

@@ -17,7 +17,33 @@ Version: 1.0
 // function allows for $ to be used like i would in standard jquery:
 (function($) {
 	
- console.log("hey")
+ 
+
+
+$(".category.notactive").each(function(){
+
+  if($(this).siblings(".subcategories").children(".subcategory.sub-active").length){
+
+    $(this).siblings(".subcategories").css({"display" : "inline"})
+    $(this).css({"font-style" : "italic"})
+
+  } else{
+    $(this).siblings(".subcategories").css({"display" : "none"})
+     
+  }
+
+})
+
+
+//$(".subcategory.sub-active")
+
+  var content = $(".subcategory.sub-active").text()
+  $('.subcategory.sub-active').text("→" + content)
+
+  $('.subcategories').prepend($(".subcategory.sub-active"))
+
+
+
 
 //barba js function (for smooth page transitions)
 
@@ -29,6 +55,7 @@ var HideShowTransition = Barba.BaseTransition.extend({
   finish: function() {
     document.body.scrollTop = 0;
     this.done();
+
   }
 });
 
@@ -44,3 +71,5 @@ Barba.Pjax.getTransition = function() {
 
 	
 })( jQuery )
+
+
