@@ -78,6 +78,44 @@
 	        $category_names = in_array("current-menu-item", $item->classes) ? ' active' : 'notactive';
 	        $subcategory_names = in_array("current-menu-item", $item->classes) ? 'sub-active' : 'sub-notactive'; // conditional for if/else the array of classes ^^ is current or not
 
+
+
+	        if ( is_singular( 'post' ) ){ //if the page is just a post
+
+	        	$categories = get_the_category();
+				 
+				if ( ! empty( $categories ) ) {
+				    //echo esc_html( $categories[0]->name );   
+					
+					
+
+					foreach ($categories as $category) {
+							
+						$name = $category->name;
+
+						if ($category->parent === 0) {
+							
+							//$category_names = ($category->name == $name) ? ' active' : 'notactive';
+
+						}
+
+
+						}	
+
+					//if 'current-menu-item' is in array of item classes
+					
+
+				}
+
+
+	        	 
+
+
+
+			}
+
+
+
 	        //wraps category section and category name (see end_el for end of ca)
 	        if ( $depth === 0 ) {
 	        	$output .= sprintf( "\n<span id='category-section-".$item->ID."'><a href='%s' class='category %s' id='category-".$item->ID."' > %s</a>\n",
@@ -109,48 +147,22 @@
 
 	} //end of extends walker function
 
-	//figure how to re-activate #2
 
 
 
 
-add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
-function special_nav_class($classes, $item){
-     if( in_array('current-menu-item', $classes) ){
-             $classes[] = 'active ';
-     }
-     return $classes;
-}
+/* test snippet for custom post types: */
 
 
-//$value = apply_filter('nav_menu_css_class', 'categories' );
-
-
-
-
-/*
-
-add_filter needs to:
-
-if(category){
-
-	1. reveal subcategories (i.e. display sibling .subcategories)
-	2. italicize this category
-
-}
-
-if(subcategory){
 	
-	1. italicize this subcategory
-	2. italicize parent (i.e. parent sibling .category)
-	3. move this subcategory to beginning of span .subcategories (i.e. parent)
-
-}
 
 
 
 
-*/
+
+
+
+
 
 
 ?>

@@ -28,11 +28,18 @@
 
 	- things still to do
 		- //figure out how to wrap all subcategories into one <span> (to hide)
-		- on click of category links to category page and reveals subcategories. 
-		- current page italics
+		- //on click of category links to category page and reveals subcategories. 
+		- //current page italics
 		- //wrap entire category in span (for organizing, siblings)
+		- filter based on category
+			- display category name in page
 
 
+	- different ways to pull
+		- class = .active = get category by name of .text(), send ajax request to pull info
+
+
+		
 
 	- reference links
 		- http://wordpress.stackexchange.com/questions/191352/help-needed-for-custom-walker-menu
@@ -44,6 +51,17 @@
 
 
 */
+
+
+if ( is_singular( 'post' ) ){
+
+	echo "SINGLE POST<br>";
+
+	$categories = get_the_category();
+	print_r($categories);
+	echo "<br />";
+}
+
 
 				  ?>
 
