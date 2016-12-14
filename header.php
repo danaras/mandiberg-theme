@@ -60,6 +60,7 @@ if ( is_singular( 'post' ) ){
 	$categories = get_the_category();
 	print_r($categories);
 	echo "<br />";
+	
 }
 
 

@@ -75,33 +75,31 @@
 
 	        $classes = empty( $item->classes ) ? array() : (array) $item->classes; //array of all classes associated with each category + subcategory
 
-	        $category_names = in_array("current-menu-item", $item->classes) ? ' active' : 'notactive';
-	        $subcategory_names = in_array("current-menu-item", $item->classes) ? 'sub-active' : 'sub-notactive'; // conditional for if/else the array of classes ^^ is current or not
+	        
 
-
+	        // posts are sequential
+	        // pages exist outside time sequence
 
 	        if ( is_singular( 'post' ) ){ //if the page is just a post
-
+	        	
 	        	$categories = get_the_category();
-				 
+				
 				if ( ! empty( $categories ) ) {
 				    //echo esc_html( $categories[0]->name );   
-					
-					
-
+				
 					foreach ($categories as $category) {
 							
 						$name = $category->name;
 
 						if ($category->parent === 0) {
 							
-							//$category_names = ($category->name == $name) ? ' active' : 'notactive';
+							$category_names = ($category->name == $item->title) ? ' active' : 'notactive';
+							
 
+						} else{
+							$subcategory_names = ($category->name == $item->title) ? 'sub-active' : 'sub-notactive';
 						}
-
-
-						}	
-
+					}	
 					//if 'current-menu-item' is in array of item classes
 					
 
@@ -112,6 +110,10 @@
 
 
 
+			} else{
+
+				$category_names = in_array("current-menu-item", $item->classes) ? ' active' : 'notactive';
+	        $subcategory_names = in_array("current-menu-item", $item->classes) ? 'sub-active' : 'sub-notactive'; // conditional for if/else the array of classes ^^ is current or not
 			}
 
 
