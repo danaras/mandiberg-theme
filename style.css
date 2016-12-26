@@ -59,7 +59,7 @@ p{
 	
 }
 
-.sub-active{
+.sub-active > a{
 	font-style: italic;
 }
 

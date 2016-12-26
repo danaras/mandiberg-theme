@@ -5,8 +5,7 @@
 
 */
 
-	//hides admin bar
-
+	//hides admin bar (REMOVE BEFORE PUBLISHING:)
 	show_admin_bar( false );
 
 	//function to initiate any js files, etc
@@ -38,7 +37,7 @@
  //    add_action('wp_print_styles', 'load_fonts');
 
 
-/* load menus */
+/* LOAD MENUS */
 
 	function register_my_menu() {
 	  register_nav_menu('header-menu',__( 'Category Menu' ));
@@ -88,16 +87,20 @@
 				    //echo esc_html( $categories[0]->name );   
 				
 					foreach ($categories as $category) {
-							
-						$name = $category->name;
 
-						if ($category->parent === 0) {
+						if ($category->parent === 0) { //for categories:
 							
 							$category_names = ($category->name == $item->title) ? ' active' : 'notactive';
 							
 
-						} else{
+						} else{ //for subcategories: 
 							$subcategory_names = ($category->name == $item->title) ? 'sub-active' : 'sub-notactive';
+
+							$posting = get_post();
+							//$post_name =  $posting->post_title;
+							$post_name = ($category->name == $item->title) ? ' →<a href="'.$posting->post_url.'">'.$posting->post_title.'</a>' : '';
+
+
 						}
 					}	
 					//if 'current-menu-item' is in array of item classes
@@ -105,18 +108,13 @@
 
 				}
 
-
-	        	 
-
-
-
-			} else{
+			} else{ //for the rest of the menu
 
 				$category_names = in_array("current-menu-item", $item->classes) ? ' active' : 'notactive';
 	        $subcategory_names = in_array("current-menu-item", $item->classes) ? 'sub-active' : 'sub-notactive'; // conditional for if/else the array of classes ^^ is current or not
+
+	        $post_name = '';
 			}
-
-
 
 	        //wraps category section and category name (see end_el for end of ca)
 	        if ( $depth === 0 ) {
@@ -127,12 +125,15 @@
 		        );
 	        } 	
 
+
+
 	    	//if the depth of the menu exceeds the top level (0), generate a new wrapper for each object.
 	    	if ( $depth > 0 ) {
-		        $output .= sprintf( "\n<a href='%s' class='subcategory %s' id='subcategory-".$item->ID."'  >%s,</a>\n",
+		        $output .= sprintf( "\n<span class='subcategory %s'><a href='%s' id='subcategory-".$item->ID."'  >%s</a>%s,</span>\n",
+		        	$subcategory_names, //if $classes[4] === current_page_item
 		            $item->url,
-		            $subcategory_names, //if $classes[4] === current_page_item
-		            $item->title
+		            $item->title,
+		            $post_name
 		        );
 	    	}
 	    } //end of start_el
@@ -150,11 +151,35 @@
 	} //end of extends walker function
 
 
+/*
+
+	- things still to do
+		- //figure out how to wrap all subcategories into one <span> (to hide)
+		- //on click of category links to category page and reveals subcategories. 
+		- //current page italics
+		- //wrap entire category in span (for organizing, siblings)
+		- //filter based on category
+			- //display category name in page
+		- //receive filler images
+		- //have menu show post title if on single page	
+
+		- have homepage only show tagged:featured work
+		- install Bootstrap
+		- css
+		- how to show single page (linked from the menu)
 
 
+	- different ways to pull
+		- class = .active = get category by name of .text(), send ajax request to pull info
 
-/* test snippet for custom post types: */
+	- reference links
+		- http://wordpress.stackexchange.com/questions/191352/help-needed-for-custom-walker-menu
+		- *** http://stackoverflow.com/questions/24180836/custom-wordpress-walker-advice-needed
+		- https://codex.wordpress.org/Class_Reference/Walker
 
+		- http://wordpress.stackexchange.com/questions/36812/how-to-style-current-page-menu-item-when-using-a-walker
+
+*/
 
 	
 

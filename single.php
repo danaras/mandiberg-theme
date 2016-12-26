@@ -7,15 +7,6 @@ get_header(); ?>
 
 		<?php
 		// Start the loop.
-
-		/*
-
-			TO DO
-				- apply current categories to nav bar
-
-
-		*/
-
 		while ( have_posts() ) : the_post();
 
 			//get_template_part( 'content', get_post_format() );
@@ -23,7 +14,9 @@ get_header(); ?>
 
 			echo $post->post_title.'<br />'.$post->post_content.'<br />';
 
-			print_r($post);
+
+
+			//print_r($post);
 			
 
 			$categories = get_the_category();
