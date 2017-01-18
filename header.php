@@ -11,11 +11,10 @@
 
 
 <body>
-	
 
 
-<div class="header">
-<p style="text-transform: uppercase;">Michael Mandiberg</p>
+<header class="header col-md-12">
+<h1><a href="<?php echo get_site_url(); ?>">Michael Mandiberg</a></h1>
 <?php 
 
 		wp_nav_menu( array( 'theme_location' => 'header-menu', 
@@ -23,8 +22,6 @@
 						  'container_class' => 'menu',
 						  'walker' => new Description_Walker 
 						  ) );
-
-
 
 if ( is_singular( 'post' ) ){
 
@@ -36,7 +33,6 @@ if ( is_singular( 'post' ) ){
 
 }
 
-
 				  ?>
 
-</div>
+</header>

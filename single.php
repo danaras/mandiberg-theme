@@ -4,19 +4,24 @@ get_header(); ?>
 
 <div id="barba-wrapper">
 	<div class="barba-container" data-namespace="homepage">
-
 		<?php
 		// Start the loop.
 		while ( have_posts() ) : the_post();
 
 			//get_template_part( 'content', get_post_format() );
 
+			?>
+		<div class="col-md-12"> 
+			<?php
+			echo $post->post_title;
+			?>
+		</div>
 
-			echo $post->post_title.'<br />'.$post->post_content.'<br />';
-
-
-
-			//print_r($post);
+		<div class="col-md-8"><?php
+				echo $post->post_content;
+			?>
+		</div>
+			<?php
 			
 
 			$categories = get_the_category();
@@ -25,7 +30,7 @@ get_header(); ?>
 			    //echo '<br />'.esc_html( $categories[1]->name );   
 			
 				foreach ($categories as $category) {
-					echo '<br/>'.$category->name;
+					//echo '<br/>'.$category->name;
 				}
 
 			}

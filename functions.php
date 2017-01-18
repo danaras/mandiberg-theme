@@ -1,6 +1,12 @@
 <?php
 /*
+ToC
 
+- function to add scripts
+- load fonts
+- add thumbnail support
+- load menu
+- 
 
 
 */
@@ -10,6 +16,12 @@
 
 	//function to initiate any js files, etc
 	function mandiberg_scripts() {
+
+		//include bootstrap:
+		wp_register_style( 'bootstrap-style', get_template_directory_uri() . '/css/bootstrap.min.css' );
+		wp_enqueue_style( 'bootstrap-style');
+
+
 
 		// Register the style like this for a theme:
 	    wp_register_style( 'mandiberg-style', get_template_directory_uri() . '/style.css', array(), '20120208', 'all' );
@@ -36,6 +48,10 @@
  //    }
  //    add_action('wp_print_styles', 'load_fonts');
 
+
+/* add Thumbnail images to posts */
+
+	add_theme_support( 'post-thumbnails' ); 
 
 /* LOAD MENUS */
 
@@ -118,7 +134,7 @@
 
 	        //wraps category section and category name (see end_el for end of ca)
 	        if ( $depth === 0 ) {
-	        	$output .= sprintf( "\n<span id='category-section-".$item->ID."'><a href='%s' class='category %s' id='category-".$item->ID."' > %s</a>\n",
+	        	$output .= sprintf( "\n<span class='category-group' id='category-section-".$item->ID."'><a href='%s' class='category %s' id='category-".$item->ID."' > %s</a>\n",
 		            $item->url,
 		            $category_names, //if $classes[4] === current_page_item
 		            $item->title
@@ -164,10 +180,12 @@
 		- //have menu show post title if on single page	
 
 		- have homepage only show tagged:featured work
-		- install Bootstrap
+			- means adding theme support for thumbnails
+
+		- //install Bootstrap
 		- css
 		- how to show single page (linked from the menu)
-
+			- if category returns only one post -> go directly to post 
 
 	- different ways to pull
 		- class = .active = get category by name of .text(), send ajax request to pull info
