@@ -113,12 +113,12 @@ ToC
 				
 				if ( ! empty( $categories ) ) {  // if category array has contents: 
 				    
-				    //echo esc_html( $categories[0]->name );   
+				    echo esc_html( $categories[0]->name );   
 				
 					foreach ($categories as $category) {
 
 						if ($category->parent === 0) { //for categories:
-							echo $category->parent;
+							//echo $category->parent;
 							// if category->parent is equal to 0
 
 							// definine category name as active or not active
