@@ -7,7 +7,7 @@
 
 	get_header(); 
 
-	//get_template_part( 'parsedown' );  // includes parsedown (markdown interpreter) to display posts in markdown format
+	get_template_part( 'parsedown' );  // includes parsedown (markdown interpreter) to display posts in markdown format
 
 ?>
 
@@ -15,7 +15,7 @@
 	<div class="barba-container" data-namespace="homepage">
 		<?php
 
-
+			$Parsedown = new Parsedown();
 
 		// Start the loop.
 		while ( have_posts() ) : the_post();
@@ -23,19 +23,19 @@
 			//get_template_part( 'content', get_post_format() );
 
 			?>
-		<div class="col-md-12"> 
+		<!-- <div class="col-md-12"> 
 			<?php
 			echo $post->post_title;
 			?>
-		</div>
+		</div> -->
 
 		<div class="col-md-8"><?php
 
-		//	$Parsedown = new Parsedown();
-		//	$content = $post->post_content;
-		//	echo $Parsedown->text($content);
+		
+			$content = $post->post_content;
+			echo $Parsedown->text($content);
 
-				echo $post->post_content;
+		//		echo $post->post_content;
 			?>
 		</div>
 			<?php
