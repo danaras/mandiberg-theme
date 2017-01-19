@@ -120,7 +120,7 @@ ToC
 						if ($category->parent === 0) { //for categories:
 							//echo $category->parent;
 							// if category->parent is equal to 0
-
+							echo "<br> TESTING <br>";
 							// definine category name as active or not active
 							$category_names = ($category->name == $item->title) ? ' active' : 'notactive';
 							// this isnt showing up on new.mandiberg.com
