@@ -93,6 +93,15 @@ ToC
 	        
 
 	        //problem on new.mandiberg = on post page, the menu is giving each top level menu item the selected sub menu + title.
+	        	// this may be because posts are listed only in their subcategory on the actual site instead of their category and subcategory. 
+
+	        	// ideally a solution towards this could be
+				/*
+
+				check if there is a category + subcategory? 
+
+
+				*/ 
 
 
 	        // posts are sequential
@@ -102,14 +111,21 @@ ToC
 	        	
 	        	$categories = get_the_category();
 				
-				if ( ! empty( $categories ) ) { 
+				if ( ! empty( $categories ) ) {  // if category array has contents: 
+				    
 				    //echo esc_html( $categories[0]->name );   
 				
 					foreach ($categories as $category) {
 
 						if ($category->parent === 0) { //for categories:
+							echo $category->parent;
+							// if category->parent is equal to 0
+
 							// definine category name as active or not active
 							$category_names = ($category->name == $item->title) ? ' active' : 'notactive';
+							// this isnt showing up on new.mandiberg.com
+
+
 							
 
 						} else{ //for subcategories: 
@@ -118,6 +134,8 @@ ToC
 
 							$posting = get_post();
 							//$post_name =  $posting->post_title;
+
+							// add the post name into the title:
 							$post_name = ($category->name == $item->title) ? ' →<a href="'.$posting->post_url.'">'.$posting->post_title.'</a>' : '';
 
 
