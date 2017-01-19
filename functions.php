@@ -113,13 +113,18 @@ ToC
 				
 				if ( ! empty( $categories ) ) {  // if category array has contents: 
 				    
-				    echo esc_html( $categories[0]->name ); //gives category or subcategory name
+				   // echo esc_html( $categories[0]->name ); //gives category or subcategory name
 
-				    print_r($categories);
+				   // print_r($categories);
+
+					// this tests what parents each category has:
+					//$parentCategory = get_category_parents( $categories );
+						//print_r($parentCategory);
+
 				
 					foreach ($categories as $category) {
 
-
+						
 						// i think this conditional isn't inclusive enough
 
 						// does this try and define a step by stepp basis? 
@@ -136,6 +141,9 @@ ToC
 							
 
 						} else{ //for subcategories: 
+
+							$category_names = ($category->name == $item->title) ? ' active' : 'notactive';
+
 							// Define subcategory class...
 							$subcategory_names = ($category->name == $item->title) ? 'sub-active' : 'sub-notactive';
 
