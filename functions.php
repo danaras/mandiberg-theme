@@ -113,14 +113,21 @@ ToC
 				
 				if ( ! empty( $categories ) ) {  // if category array has contents: 
 				    
-				    echo esc_html( $categories[0]->name );   
+				    echo esc_html( $categories[0]->name ); //gives category or subcategory name
+
+				    print_r($categories);
 				
 					foreach ($categories as $category) {
+
+
+						// i think this conditional isn't inclusive enough
+
+						// does this try and define a step by stepp basis? 
 
 						if ($category->parent === 0) { //for categories:
 							//echo $category->parent;
 							// if category->parent is equal to 0
-							echo "<br> TESTING <br>";
+
 							// definine category name as active or not active
 							$category_names = ($category->name == $item->title) ? ' active' : 'notactive';
 							// this isnt showing up on new.mandiberg.com
