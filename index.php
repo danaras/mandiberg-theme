@@ -133,7 +133,7 @@ if ($cat_id) {
 	?> 
 	<div class="col-md-4">
 	<?php 
-	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a> '.$counter.'</h1>' );
+	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
 			if ( has_post_thumbnail() ) {
 				//if the post has a thumbnail image show it:
 				the_post_thumbnail();

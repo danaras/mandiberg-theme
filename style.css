@@ -227,21 +227,29 @@ header{
 /* footer section */
 
 footer{
-	padding: 20px;
 	display: block;
-	margin-top: 70px;
 	margin-bottom: 70px;
-	border-top: solid 2px black;
+	
 }
 
 
 footer * {
-		color: black;
+	color: black;
 	font-size: 18px;
 	line-height: 24px;
 	margin-bottom: 0px;
 }  
 
+footer > .col-md-10 {
+	margin-top: 70px;
+	border-top: solid 2px black;
+	padding-top: 24px;
+}
+
+.col-md-10 > .col-md-4{
+	min-height: auto;
+	margin-bottom: auto;
+}
 
 .col-md-10 > h2 {
 	font-style: italic;
