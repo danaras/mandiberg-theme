@@ -7,7 +7,7 @@
 
 	get_header(); 
 
-	get_template_part( 'parsedown' );  // includes parsedown (markdown interpreter) to display posts in markdown format
+	//get_template_part( 'parsedown' );  // includes parsedown (markdown interpreter) to display posts in markdown format
 
 ?>
 
@@ -31,11 +31,11 @@
 
 		<div class="col-md-8"><?php
 
-			$Parsedown = new Parsedown();
-			$content = $post->post_content;
-			echo $Parsedown->text($content);
+		//	$Parsedown = new Parsedown();
+		//	$content = $post->post_content;
+		//	echo $Parsedown->text($content);
 
-				//echo $post->post_content;
+				echo $post->post_content;
 			?>
 		</div>
 			<?php
