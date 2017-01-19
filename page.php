@@ -96,12 +96,17 @@ $posts_array = get_posts( $args );
 if(cms_is_in_menu( 'category menu' )){
 
 //display contents
+	?>
+	<div class="col-md-8">
+	<?php
 		$Parsedown = new Parsedown();
 		$content = $post->post_content;
 		echo $Parsedown->text($content);
 	//echo $content;
 
-
+?>
+	</div>
+<?php
 } else if ($cat_id) {
 
 	//prints full array content from above
@@ -167,10 +172,8 @@ if(cms_is_in_menu( 'category menu' )){
 
 ?>
 
-	</div>
-</div>
-
-
-
 
 <?php get_footer(); ?>
+
+	</div> <!-- .barba-container -->
+</div> <!-- #barba-wrapper -->

@@ -15,6 +15,9 @@ Version: 1.0
 
 1. basic html elements
 2. menu
+3. project list styling
+4. page
+5. footer section
 
  */
 
@@ -69,6 +72,13 @@ h1{
 	text-transform: uppercase;
 	margin-bottom: 20px;
 }
+
+
+.barba-wrapper, .barba-container{
+	display: block;
+	height: 100%;
+}
+
 
 
 /* 2. menu */
@@ -140,7 +150,14 @@ header{
 	height: auto;
 }
 
+/* page */
 
+
+.col-md-12, .col-md-10, .col-md-8, .col-md-4{
+
+padding-left: 0px;
+
+}
 
 .col-md-8 > a {
 	text-decoration: underline;
@@ -205,6 +222,15 @@ header{
 
 */
 
+/* footer section */
+
+footer{
+	padding: 20px;
+	display: block;
+	margin-top: 70px;
+	margin-bottom: 70px;
+	border-top: solid 2px black;
+}
 
 
 

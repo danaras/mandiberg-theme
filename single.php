@@ -29,9 +29,9 @@
 			?>
 		</div> -->
 
-		<div class="col-md-8"><?php
+		<div class="col-md-8">
+		<?php
 
-		
 			$content = $post->post_content;
 			echo $Parsedown->text($content);
 
@@ -75,7 +75,9 @@
 		endwhile;
 		?>
 
-	</div>
-</div>
+
 
 <?php get_footer(); ?>
+
+	</div> <!-- .barba-container -->
+</div> <!-- #barba-wrapper -->
