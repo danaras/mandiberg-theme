@@ -32,6 +32,7 @@ html, body{
 	display: block;
 	width: 96vw;
 	margin: 0 auto;
+	max-width: 1500px;
 }
 
 div, h1, h2, h3, h4, h5, h6, p{
@@ -146,6 +147,7 @@ header{
 }
 .col-md-8 >img,
 .col-md-8 > a > img,
+.col-md-8 > p > a > img,
 .col-md-8 > p > img,
 .col-md-8 > h1 > img,
 .col-md-8 > h2 > img,
@@ -180,6 +182,10 @@ header{
 
 .col-md-8 > h3 {
 	font-style: italic;
+}
+
+.col-md-8 > p {
+	max-width: 800px;
 }
 
 

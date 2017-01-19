@@ -34,6 +34,7 @@ if ( is_singular( 'post' ) ){
 }
 
 
+get_template_part( 'Parsedown' );  // includes parsedown (markdown interpreter) to display posts in markdown format
 
 				  ?>
 
