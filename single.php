@@ -30,7 +30,7 @@ get_header(); ?>
 			    //echo '<br />'.esc_html( $categories[1]->name );   
 			
 				foreach ($categories as $category) {
-					//echo '<br/>'.$category->name;
+					echo '<br/>'.$category->name;
 				}
 
 			}

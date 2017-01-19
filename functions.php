@@ -92,24 +92,28 @@ ToC
 
 	        
 
+	        //problem on new.mandiberg = on post page, the menu is giving each top level menu item the selected sub menu + title.
+
+
 	        // posts are sequential
 	        // pages exist outside time sequence
 
-	        if ( is_singular( 'post' ) ){ //if the page is just a post
+	        if ( is_singular( 'post' ) ){ //if the given page is just a post
 	        	
 	        	$categories = get_the_category();
 				
-				if ( ! empty( $categories ) ) {
+				if ( ! empty( $categories ) ) { 
 				    //echo esc_html( $categories[0]->name );   
 				
 					foreach ($categories as $category) {
 
 						if ($category->parent === 0) { //for categories:
-							
+							// definine category name as active or not active
 							$category_names = ($category->name == $item->title) ? ' active' : 'notactive';
 							
 
 						} else{ //for subcategories: 
+							// Define subcategory class...
 							$subcategory_names = ($category->name == $item->title) ? 'sub-active' : 'sub-notactive';
 
 							$posting = get_post();
@@ -124,7 +128,7 @@ ToC
 
 				}
 
-			} else{ //for the rest of the menu
+			} else{ //for the rest of the pages (not a single post):
 
 				$category_names = in_array("current-menu-item", $item->classes) ? ' active' : 'notactive';
 	        $subcategory_names = in_array("current-menu-item", $item->classes) ? 'sub-active' : 'sub-notactive'; // conditional for if/else the array of classes ^^ is current or not
