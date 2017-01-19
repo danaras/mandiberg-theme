@@ -13,8 +13,6 @@ get_header();
 
 ?>
 
-	
-
 <!-- barba js wrapper for smooth transitions -->
 <div id="barba-wrapper">
 	<div class="barba-container" data-namespace="homepage">
@@ -108,14 +106,24 @@ if(cms_is_in_menu( 'category menu' )){
 	</div>
 <?php
 } else if ($cat_id) {
+	$counter = 0;
+	$arrayLength = count($posts_array); 
 
 	//prints full array content from above
+	 
 	foreach ($posts_array as $post) {
+
+		if ($counter === 0) {
+				?> <div class="row"> <?php
+		
+		}	
+		$counter = $counter + 1;
+
 	//echo apply_filters( 'post_content', $post->post_content ); //prints content of post
 	?> 
 	<div class="col-md-4">
 	<?php 
-	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
+	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a> '.$counter.'</h1>' );
 			if ( has_post_thumbnail() ) {
 				//if the post has a thumbnail image show it:
 				the_post_thumbnail();
@@ -132,19 +140,41 @@ if(cms_is_in_menu( 'category menu' )){
 	</div>
 	<?php
 	//echo apply_filters( 'guid', $post->guid );
+		
+			if($counter % 3 === 0) {
+		     
+	        	?> </div><div class="row"><?php 
+	        } else if ($counter === $arrayLength){
+	        	?> </div> <?php
+	        } else if($counter % 3 === 0 && $counter === $arrayLength){
+				?> </div> <?php
+	        }
 
-	//print_r($post); //prints full object
-	}	
+
+		
+		
+	}	// end of for each post
 
 } else{
 	//featured works (on homepage!)
+	$counter = 0;
+	$arrayLength = count($posts_array); 
+
+	//prints full array content from above
+	 
 	foreach ($posts_array as $post) {
-		if(has_tag('featured works')) {
-	    //the_tags();
-			?>
-			<div class="col-md-4">
-			<?php
-			echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
+
+		if ($counter === 0) {
+				?> <div class="row"> <?php
+		
+		}	
+		$counter = $counter + 1;
+
+	//echo apply_filters( 'post_content', $post->post_content ); //prints content of post
+	?> 
+	<div class="col-md-4">
+	<?php 
+	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a> '.$counter.'</h1>' );
 			if ( has_post_thumbnail() ) {
 				//if the post has a thumbnail image show it:
 				the_post_thumbnail();
@@ -154,14 +184,26 @@ if(cms_is_in_menu( 'category menu' )){
 				
 			} 
 			//else the post just shows the title
-			// echo "<br>";
-			// print_r($post);
-			// echo '<br>';
-			?>
-			</div>
-			<?php
-		}
+	
+	// print_r($post);
 
+	?>	
+	</div>
+	<?php
+	//echo apply_filters( 'guid', $post->guid );
+		
+			if($counter % 3 === 0) {
+		     
+	        	?> </div><div class="row"><?php 
+	        } else if ($counter === $arrayLength){
+	        	?> </div> <?php
+	        } else if($counter % 3 === 0 && $counter === $arrayLength){
+				?> </div> <?php
+	        }
+
+
+		
+		
 	}
 }
 
@@ -171,6 +213,8 @@ if(cms_is_in_menu( 'category menu' )){
 
 
 ?>
+
+
 
 
 <?php get_footer(); ?>

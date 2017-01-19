@@ -13,7 +13,8 @@
 <body>
 
 
-<header class="header col-md-12">
+<header class="row">
+<div class="header col-md-12">
 <h1><a href="<?php echo get_site_url(); ?>">Michael Mandiberg</a></h1>
 <?php 
 
@@ -37,5 +38,5 @@ if ( is_singular( 'post' ) ){
 get_template_part( 'Parsedown' );  // includes parsedown (markdown interpreter) to display posts in markdown format
 
 				  ?>
-
+</div>
 </header>
