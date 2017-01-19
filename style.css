@@ -115,6 +115,10 @@ header{
 	
 }
 
+.active-title{
+	text-decoration: underline;
+}
+
 
 
 /* project list styling */
@@ -126,13 +130,30 @@ header{
 	min-height: 33vw;
 }
 
+.screen-reader-text{
+	display: none;
+}
 
 .col-md-4 >img{
 	width: 100%;
 	height: auto;
 }
 
-.col-md-8 >img{
+
+
+.col-md-8 > a {
+	text-decoration: underline;
+}
+.col-md-8 >img,
+.col-md-8 > a > img,
+.col-md-8 > p > img,
+.col-md-8 > h1 > img,
+.col-md-8 > h2 > img,
+.col-md-8 > h3 > img,
+.col-md-8 > h4 > img,
+.col-md-8 > h5 > img,
+.col-md-8 > h6 > img
+{
 	margin-top: 16px;
 	margin-bottom: 16px;
 	display: block;
@@ -140,13 +161,28 @@ header{
 	height: auto;
 }
 
-.col-md-8 > a > img{
-	margin-top: 16px;
+.col-md-8 > h1, 
+.col-md-8 > h2, 
+.col-md-8 > h3, 
+.col-md-8 > h4, 
+.col-md-8 > h5, 
+.col-md-8 > h6, 
+.col-md-8 > p {
+	color: black;
+	font-size: 24px;
 	margin-bottom: 16px;
-	display: block;
-	max-width: 100%;
-	height: auto;
+}     
+
+.col-md-8 > h2 {
+	font-style: italic;
+	text-transform: uppercase;
 }
+
+.col-md-8 > h3 {
+	font-style: italic;
+}
+
+
 
 /*
 

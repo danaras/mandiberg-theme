@@ -90,19 +90,6 @@ ToC
 
 	        $classes = empty( $item->classes ) ? array() : (array) $item->classes; //array of all classes associated with each category + subcategory
 
-	        
-
-	        //problem on new.mandiberg = on post page, the menu is giving each top level menu item the selected sub menu + title.
-	        	// this may be because posts are listed only in their subcategory on the actual site instead of their category and subcategory. 
-
-	        	// ideally a solution towards this could be
-				/*
-
-				check if there is a category + subcategory? 
-
-
-				*/ 
-
 
 	        // posts are sequential
 	        // pages exist outside time sequence
@@ -151,7 +138,7 @@ ToC
 							//$post_name =  $posting->post_title;
 
 							// add the post name into the title:
-							$post_name = ($category->name == $item->title) ? ' →<a href="'.$posting->post_url.'">'.$posting->post_title.'</a>' : '';
+							$post_name = ($category->name == $item->title) ? ' →<a class="active-title" href="'.$posting->post_url.'">'.$posting->post_title.'</a>' : '';
 
 
 						}
@@ -216,13 +203,29 @@ ToC
 		- //receive filler images
 		- //have menu show post title if on single page	
 
-		- have homepage only show tagged:featured work
-			- means adding theme support for thumbnails
+		- //have homepage only show tagged:featured work
+			- //means adding theme support for thumbnails & excerpt text
 
 		- //install Bootstrap
 		- css
 		- how to show single page (linked from the menu)
-			- if category returns only one post -> go directly to post 
+			- //if category returns only one post -> go directly to post 
+
+		- footer
+			- mailing list
+			- social links
+
+		- project/ post page
+			- related news...?
+			- 
+
+		- menu
+			- how to deal with multiple subcategories?
+
+
+
+
+
 
 	- different ways to pull
 		- class = .active = get category by name of .text(), send ajax request to pull info
@@ -233,6 +236,9 @@ ToC
 		- https://codex.wordpress.org/Class_Reference/Walker
 
 		- http://wordpress.stackexchange.com/questions/36812/how-to-style-current-page-menu-item-when-using-a-walker
+
+
+		- https://code.tutsplus.com/articles/11-quick-tips-securing-your-wordpress-site--wp-22446
 
 */
 

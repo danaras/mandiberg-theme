@@ -1,10 +1,22 @@
+
+
+
 <?php
 
-get_header(); ?>
+/* Single page template */
+
+	get_header(); 
+
+	get_template_part( 'parsedown' );  // includes parsedown (markdown interpreter) to display posts in markdown format
+
+?>
 
 <div id="barba-wrapper">
 	<div class="barba-container" data-namespace="homepage">
 		<?php
+
+
+
 		// Start the loop.
 		while ( have_posts() ) : the_post();
 
@@ -18,7 +30,12 @@ get_header(); ?>
 		</div>
 
 		<div class="col-md-8"><?php
-				echo $post->post_content;
+
+			$Parsedown = new Parsedown();
+			$content = $post->post_content;
+			echo $Parsedown->text($content);
+
+				//echo $post->post_content;
 			?>
 		</div>
 			<?php
@@ -30,7 +47,7 @@ get_header(); ?>
 			    //echo '<br />'.esc_html( $categories[1]->name );   
 			
 				foreach ($categories as $category) {
-					echo '<br/>'.$category->name;
+					//echo '<br/>'.$category->name;
 				}
 
 			}
@@ -39,7 +56,9 @@ get_header(); ?>
 			//if ( comments_open() || get_comments_number() ) :
 			//	comments_template();
 			// endif;
-
+			?> 
+			<div class="col-md-4">
+			<?php
 			// Previous/next post navigation.
 			the_post_navigation( array(
 				'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentyfifteen' ) . '</span> ' .
@@ -49,7 +68,9 @@ get_header(); ?>
 					'<span class="screen-reader-text">' . __( 'Previous post:', 'twentyfifteen' ) . '</span> ' .
 					'<span class="post-title">%title</span>',
 			) );
-
+			?>
+			</div> 
+			<?php
 		// End the loop.
 		endwhile;
 		?>
