@@ -156,54 +156,57 @@ if(cms_is_in_menu( 'category menu' )){
 	}	// end of for each post
 
 } else{
-	//featured works (on homepage!)
-	$counter = 0;
-	$arrayLength = count($posts_array); 
-
-	//prints full array content from above
-	 
-	foreach ($posts_array as $post) {
-
-		if ($counter === 0) {
-				?> <div class="row"> <?php
+	if(has_tag('featured works')) {
 		
-		}	
-		$counter = $counter + 1;
+		//featured works (on homepage!)
+		$counter = 0;
+		$arrayLength = count($posts_array); 
 
-	//echo apply_filters( 'post_content', $post->post_content ); //prints content of post
-	?> 
-	<div class="col-md-4">
-	<?php 
-	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
-			if ( has_post_thumbnail() ) {
-				//if the post has a thumbnail image show it:
-				the_post_thumbnail();
-			} else if(has_excerpt()){
-				// else if it has an exerpt statement, show it:
-				the_excerpt();
-				
-			} 
-			//else the post just shows the title
-	
-	// print_r($post);
+		//prints full array content from above
+		 
+		foreach ($posts_array as $post) {
 
-	?>	
-	</div>
-	<?php
-	//echo apply_filters( 'guid', $post->guid );
+			if ($counter === 0) {
+					?> <div class="row"> <?php
+			
+			}	
+			$counter = $counter + 1;
+
+		//echo apply_filters( 'post_content', $post->post_content ); //prints content of post
+		?> 
+		<div class="col-md-4">
+		<?php 
+		echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
+				if ( has_post_thumbnail() ) {
+					//if the post has a thumbnail image show it:
+					the_post_thumbnail();
+				} else if(has_excerpt()){
+					// else if it has an exerpt statement, show it:
+					the_excerpt();
+					
+				} 
+				//else the post just shows the title
 		
-			if($counter % 3 === 0) {
-		     
-	        	?> </div><div class="row"><?php 
-	        } else if ($counter === $arrayLength){
-	        	?> </div> <?php
-	        } else if($counter % 3 === 0 && $counter === $arrayLength){
-				?> </div> <?php
-	        }
+		// print_r($post);
+
+		?>	
+		</div>
+		<?php
+		//echo apply_filters( 'guid', $post->guid );
+			
+				if($counter % 3 === 0) {
+			     
+		        	?> </div><div class="row"><?php 
+		        } else if ($counter === $arrayLength){
+		        	?> </div> <?php
+		        } else if($counter % 3 === 0 && $counter === $arrayLength){
+					?> </div> <?php
+		        }
 
 
-		
-		
+			
+			
+		}
 	}
 }
 
