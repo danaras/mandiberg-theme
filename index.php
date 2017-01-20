@@ -115,7 +115,7 @@ if ($cat_id) {
 	}
 
 } else{
-	if(has_tag('featured-works')) {
+	
 
 		//featured works (on homepage!)
 		$counter = 0;
@@ -124,6 +124,7 @@ if ($cat_id) {
 		//prints full array content from above
 		 
 		foreach ($posts_array as $post) {
+			if(has_tag('featured works')) {
 
 			if ($counter === 0) {
 					?> <div class="row"> <?php

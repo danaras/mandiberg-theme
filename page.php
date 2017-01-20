@@ -156,7 +156,6 @@ if(cms_is_in_menu( 'category menu' )){
 	}	// end of for each post
 
 } else{
-	if(has_tag('featured-works')) {
 		
 		//featured works (on homepage!)
 		$counter = 0;
@@ -165,6 +164,7 @@ if(cms_is_in_menu( 'category menu' )){
 		//prints full array content from above
 		 
 		foreach ($posts_array as $post) {
+			if(has_tag('featured works')) {
 
 			if ($counter === 0) {
 					?> <div class="row"> <?php
