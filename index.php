@@ -72,7 +72,7 @@ if ($cat_id) {
 	
 	$counter = 0;
 	$arrayLength = count($posts_array); 
-	echo $arrayLength;
+	//echo $arrayLength;
 	//prints full array content from above
 	 
 	foreach ($posts_array as $post) {
@@ -106,7 +106,7 @@ if ($cat_id) {
 	//echo apply_filters( 'guid', $post->guid );
 		if($counter % 3 === 0 && $counter !== $arrayLength) {
 		     
-        	?> </div>between<div class="row"><?php 
+        	?> </div><div class="row"><?php 
         } else if ($counter === $arrayLength){
         	?> </div> <?php
         } else if($counter % 3 === 0 && $counter === $arrayLength){
@@ -127,7 +127,7 @@ if ($cat_id) {
 		$term_name = 'featured works';
 		$term = get_term_by('name', $term_name, $taxonomy);
 		$arrayLength = $term->count;
-
+		
 		
 		//prints full array content from above
 		 

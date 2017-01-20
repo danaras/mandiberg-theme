@@ -163,7 +163,8 @@ if(cms_is_in_menu( 'category menu' )){
 		$taxonomy = 'post_tag';
 		$term_name = 'featured works';
 		$term = get_term_by('name', $term_name, $taxonomy);
-		$arrayLength = $term->count; 
+		$arrayLength = $term->count;
+		echo $arrayLength; 
 
 	//prints full array content from above
 	 
