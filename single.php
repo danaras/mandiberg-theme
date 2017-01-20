@@ -28,7 +28,7 @@
 			echo $post->post_title;
 			?>
 		</div> -->
-
+		<div class="row">
 		<div class="col-md-8">
 		<?php
 
@@ -37,6 +37,7 @@
 
 		//		echo $post->post_content;
 			?>
+		</div>
 		</div>
 			<?php
 			
@@ -57,7 +58,8 @@
 			//	comments_template();
 			// endif;
 			?> 
-			<div class="col-md-4">
+			<div class="row">
+			<div class="col-md-8">
 			<?php
 			// Previous/next post navigation.
 			the_post_navigation( array(
@@ -70,6 +72,7 @@
 			) );
 			?>
 			</div> 
+			</div>
 			<?php
 		// End the loop.
 		endwhile;
