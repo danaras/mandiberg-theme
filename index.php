@@ -115,8 +115,8 @@ if ($cat_id) {
 	}
 
 } else{
-	if(has_tag('featured works')) {
-		
+	if(has_tag('featured-works')) {
+
 		//featured works (on homepage!)
 		$counter = 0;
 		$arrayLength = count($posts_array); 

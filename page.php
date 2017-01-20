@@ -156,7 +156,7 @@ if(cms_is_in_menu( 'category menu' )){
 	}	// end of for each post
 
 } else{
-	if(has_tag('featured works')) {
+	if(has_tag('featured-works')) {
 		
 		//featured works (on homepage!)
 		$counter = 0;
