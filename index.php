@@ -16,7 +16,7 @@ get_header(); ?>
 <div id="barba-wrapper">
 	<div class="barba-container" data-namespace="homepage">
 <?php 
-
+	
 
 
 $category = get_category( get_query_var( 'cat' ) ); 
@@ -69,9 +69,10 @@ $posts_array = get_posts( $args );
 
 
 if ($cat_id) {
+	
 	$counter = 0;
 	$arrayLength = count($posts_array); 
-
+	echo $arrayLength;
 	//prints full array content from above
 	 
 	foreach ($posts_array as $post) {
@@ -103,9 +104,9 @@ if ($cat_id) {
 	</div>
 	<?php
 	//echo apply_filters( 'guid', $post->guid );
-		if($counter % 3 === 0) {
+		if($counter % 3 === 0 && $counter !== $arrayLength) {
 		     
-        	?> </div><div class="row"><?php 
+        	?> </div>between<div class="row"><?php 
         } else if ($counter === $arrayLength){
         	?> </div> <?php
         } else if($counter % 3 === 0 && $counter === $arrayLength){
@@ -119,8 +120,15 @@ if ($cat_id) {
 
 		//featured works (on homepage!)
 		$counter = 0;
-		$arrayLength = count($posts_array); 
+		//$arrayLength = count($posts_array); // lists all the posts regardless of tag... 
 
+		
+		$taxonomy = 'post_tag';
+		$term_name = 'featured works';
+		$term = get_term_by('name', $term_name, $taxonomy);
+		$arrayLength = $term->count;
+
+		
 		//prints full array content from above
 		 
 		foreach ($posts_array as $post) {
@@ -154,9 +162,9 @@ if ($cat_id) {
 		<?php
 		//echo apply_filters( 'guid', $post->guid );
 			
-				if($counter % 3 === 0) {
+				if($counter % 3 === 0 && $counter !== $arrayLength) {
 			     
-		        	?> </div><div class="row"><?php 
+		        	?> </div><div class="row" ><?php 
 		        } else if ($counter === $arrayLength){
 		        	?> </div> <?php
 		        } else if($counter % 3 === 0 && $counter === $arrayLength){
