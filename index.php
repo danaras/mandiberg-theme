@@ -119,63 +119,74 @@ if ($cat_id) {
 	
 
 		//featured works (on homepage!)
-		$counter = 0;
-		//$arrayLength = count($posts_array); // lists all the posts regardless of tag... 
-
-		
 		$taxonomy = 'post_tag';
 		$term_name = 'featured works';
 		$term = get_term_by('name', $term_name, $taxonomy);
 		$arrayLength = $term->count;
+		//print_r($term);
 		
-		
-		//prints full array content from above
-		 
-		foreach ($posts_array as $post) {
-			if(has_tag('featured works')) {
+/* */
+		$the_query = new WP_Query( 'tag=featured-works' );
 
-			if ($counter === 0) {
+		if ( $the_query->have_posts() ) {
+			$number = 0;
+		   // echo '<ul>';
+		    while ( $the_query->have_posts() ) {
+
+		    	if ($number === 0) {
 					?> <div class="row"> <?php
 			
-			}	
-			$counter = $counter + 1;
+				}
+				$number = $number + 1;
 
-		//echo apply_filters( 'post_content', $post->post_content ); //prints content of post
-		?> 
-		<div class="col-md-4">
-		<?php 
-		echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
-				if ( has_post_thumbnail() ) {
-					//if the post has a thumbnail image show it:
-					the_post_thumbnail();
-				} else if(has_excerpt()){
-					// else if it has an exerpt statement, show it:
-					the_excerpt();
-					
-				} 
-				//else the post just shows the title
-		
-		// print_r($post);
 
-		?>	
-		</div>
-		<?php
-		//echo apply_filters( 'guid', $post->guid );
-			
-				if($counter % 3 === 0 && $counter !== $arrayLength) {
+
+		        $the_query->the_post();
+		       // echo '<li>' . get_the_title() . $number . '</li>';
+		        
+		        ?> 
+				<div class="col-md-4">
+				<?php 
+				echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
+						if ( has_post_thumbnail() ) {
+							//if the post has a thumbnail image show it:
+							the_post_thumbnail();
+						} else if(has_excerpt()){
+							// else if it has an exerpt statement, show it:
+							the_excerpt();
+							
+						} 
+						//else the post just shows the title
+				
+				// print_r($post);
+
+				?>	
+				</div>
+				<?php
+
+
+				if($number % 3 === 0 && $number !== $arrayLength) {
 			     
 		        	?> </div><div class="row" ><?php 
-		        } else if ($counter === $arrayLength){
+		        } else if ($number === $arrayLength){
 		        	?> </div> <?php
-		        } else if($counter % 3 === 0 && $counter === $arrayLength){
+		        } else if($number % 3 === 0 && $number === $arrayLength){
 					?> </div> <?php
 		        }
 
 
-			
-			
+
+
+		    }
+		   // echo '</ul>';
+		} else {
+		    // no posts found
 		}
-	} // end of if has featured works tag
+		/* Restore original Post Data */
+		wp_reset_postdata();
+/* */
+
+
 }
 
 

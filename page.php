@@ -156,63 +156,75 @@ if(cms_is_in_menu( 'category menu' )){
 	}	// end of for each post
 
 } else{
-	//featured works (on homepage!)
-	
-	$counter = 0;
-	//gets the amount of posts in the featured works tag
+
+		//featured works (on homepage!)
 		$taxonomy = 'post_tag';
 		$term_name = 'featured works';
 		$term = get_term_by('name', $term_name, $taxonomy);
 		$arrayLength = $term->count;
-		echo $arrayLength; 
-
-	//prints full array content from above
-	 
-	foreach ($posts_array as $post) {
-		if(has_tag('featured works')) {
-
-		if ($counter === 0) {
-				?> <div class="row"> <?php
+		//print_r($term);
 		
-		}	
-		$counter = $counter + 1;
+/* */
+		$the_query = new WP_Query( 'tag=featured-works' );
 
-	//echo apply_filters( 'post_content', $post->post_content ); //prints content of post
-	?> 
-	<div class="col-md-4">
-	<?php 
-	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
-			if ( has_post_thumbnail() ) {
-				//if the post has a thumbnail image show it:
-				the_post_thumbnail();
-			} else if(has_excerpt()){
-				// else if it has an exerpt statement, show it:
-				the_excerpt();
+		if ( $the_query->have_posts() ) {
+			$number = 0;
+		   // echo '<ul>';
+		    while ( $the_query->have_posts() ) {
+
+		    	if ($number === 0) {
+					?> <div class="row"> <?php
+			
+				}
+				$number = $number + 1;
+
+
+
+		        $the_query->the_post();
+		       // echo '<li>' . get_the_title() . $number . '</li>';
+		        
+		        ?> 
+				<div class="col-md-4">
+				<?php 
+				echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
+						if ( has_post_thumbnail() ) {
+							//if the post has a thumbnail image show it:
+							the_post_thumbnail();
+						} else if(has_excerpt()){
+							// else if it has an exerpt statement, show it:
+							the_excerpt();
+							
+						} 
+						//else the post just shows the title
 				
-			} 
-			//else the post just shows the title
-	
-	// print_r($post);
+				// print_r($post);
 
-	?>	
-	</div>
-	<?php
-	//echo apply_filters( 'guid', $post->guid );
-		
-			if($counter % 3 === 0 && $counter !== $arrayLength) {
-		     
-	        	?> </div><div class="row"><?php 
-	        } else if ($counter === $arrayLength){
-	        	 ?> </div> <?php
-	        } else if($counter % 3 === 0 && $counter === $arrayLength){
-				 ?> </div> <?php
-	        }
+				?>	
+				</div>
+				<?php
 
 
-		
-		
+				if($number % 3 === 0 && $number !== $arrayLength) {
+			     
+		        	?> </div><div class="row" ><?php 
+		        } else if ($number === $arrayLength){
+		        	?> </div> <?php
+		        } else if($number % 3 === 0 && $number === $arrayLength){
+					?> </div> <?php
+		        }
+
+
+
+
+		    }
+		   // echo '</ul>';
+		} else {
+		    // no posts found
 		}
-	}
+		/* Restore original Post Data */
+		wp_reset_postdata();
+/* */
+
 }
 
 
