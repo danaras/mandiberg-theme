@@ -208,12 +208,12 @@ ToC
 
 		- //install Bootstrap
 		- css
-		- how to show single page (linked from the menu)
+		- //how to show single page (linked from the menu)
 			- //if category returns only one post -> go directly to post 
 
 		- footer
-			- mailing list
-			- social links
+			- mailing list — ?????
+			- //social links (can be added)
 
 		- project/ post page
 			- related news...?
@@ -221,7 +221,11 @@ ToC
 
 		- menu
 			- how to deal with multiple subcategories?
+				- ignore for now
 
+		- post initial launch
+			- barba fades
+				- menu fade ? inactive visibility none? 
 
 
 

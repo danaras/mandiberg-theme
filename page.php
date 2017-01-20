@@ -235,8 +235,6 @@ if(cms_is_in_menu( 'category menu' )){
 ?>
 
 
-
-
 <?php get_footer(); ?>
 
 	</div> <!-- .barba-container -->

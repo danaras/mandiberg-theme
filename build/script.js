@@ -17,6 +17,8 @@ Version: 1.0
 // function allows for $ to be used like i would in standard jquery:
 (function($) {
 
+// menu: 
+
 $(".category.notactive").each(function(){
 
   if($(this).siblings(".subcategories").children(".subcategory.sub-active").length){

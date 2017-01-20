@@ -1,7 +1,7 @@
 
 
 <footer class="row">
-	<div class="col-sm-10">
+	<div class="col-sm-10 footer-below">
 		<div class="row">
 		<?php 
 		// include page for footer:
