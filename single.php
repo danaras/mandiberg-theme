@@ -109,7 +109,7 @@
 
 			    // array( ) is for all categories...s $menuCategories
 				
-				print_r($args);
+				//print_r($args);
 
 				$the_query = new WP_Query( $args );
 				if ( $the_query->have_posts() ) {
