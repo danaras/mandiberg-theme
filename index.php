@@ -91,6 +91,9 @@ if ($cat_id) {
 			if ( has_post_thumbnail() ) {
 				//if the post has a thumbnail image show it:
 				the_post_thumbnail('large');
+				
+				//$postThumbnail = get_the_post_thumbnail($post, 'large');
+				//print_r($postThumbnail);
 
 			} else if(has_excerpt()){
 				// else if it has an exerpt statement, show it:
