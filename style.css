@@ -267,8 +267,13 @@ header{
 	max-width: 800px;
 }
 
+.col-md-8 > p > a{
+	text-decoration: underline;
+}
+
 blockquote{
 	border-left: 2px solid black;
+	color: black;
 	font-size: 18px;
 	line-height: 24px;
 }

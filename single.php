@@ -57,6 +57,24 @@
 				<h1>Related Works</h1>
 			<?php
 
+			/* get categories presented in menu */
+
+			//$menu = wp_get_nav_menu_object( "Category Menu" );
+
+			//print_r($menu);
+
+			$menuItems = wp_get_nav_menu_items("Category Menu");
+			// select menu category items
+			
+			$menuCategories = [];
+
+			foreach ($menuItems as $menuItem) {
+				// get/add ID of each menu item to array
+				$menuID = $menuItem->ID;
+				array_push($menuCategories, $menuID);
+
+			}
+
 			$taxonomy = 'post_tag';
 			$term_name = $t[0]->name; // name of tag
 			$term_slug = $t[0]->slug; //slug of tag
@@ -80,7 +98,7 @@
 			    'tag__in' => $tagIDArray,
 			    'orderby'   => 'rand',
 			    'posts_per_page' => 3,
-			    'category__in' => array(  )
+			    'category__in' => $menuCategories
 			    ); // filter for posts
 
 				// query for the posts if ther are three
