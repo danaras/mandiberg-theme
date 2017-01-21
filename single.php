@@ -91,8 +91,8 @@
 
 				foreach ($t as $givenTag) {
 					
-					$givenTagID = $givenTag->term_id;
-
+					$givenTagID = $givenTag->name;
+					print_r($givenTag->name);
 					array_push($tagIDArray, $givenTagID);
 
 				}
@@ -103,13 +103,12 @@
 				    'post_type' => 'post',
 				    'orderby'   => 'rand',
 				    'posts_per_page' => 3,
-				    'category__in' => array( ), 
+				    'category__in' => $menuCategories, 
 				    'tag__in' => $tagIDArray
 			    ); // filter for posts
 
 			    // array( ) is for all categories...s $menuCategories
 				
-				print_r($args);
 
 				$the_query = new WP_Query( $args );
 				if ( $the_query->have_posts() ) {
