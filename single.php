@@ -96,49 +96,50 @@
 				array_push($tagIDArray, $givenTagID);
 
 			}
-
 				# choose 3 random ones and display
 				
 				# search query
-				$args = array(
+			$args = array(
 			    'post_type' => 'post',
-			    'tag__in' => $tagIDArray,
 			    'orderby'   => 'rand',
 			    'posts_per_page' => 3,
-			    'category__in' => $menuCategories
-			    ); // filter for posts
-				
-				print_r($args);
+			    'category__in' => $menuCategories, 
+			    'tag__in' => $tagIDArray
+		    ); // filter for posts
 
-				// query for the posts if ther are three
-				$the_query = new WP_Query( $args );
-				if ( $the_query->have_posts() ) {
+		    // array( ) is for all categories...s
+			
+			print_r($args);
 
-					 while ( $the_query->have_posts() ) {
-					 	 $the_query->the_post();
+			// query for the posts if ther are three
+			$the_query = new WP_Query( $args );
+			if ( $the_query->have_posts() ) {
 
-					 	 ?>
-				<div class="row">
-					<div class="col-sm-12 related-work"> <?php
+				 while ( $the_query->have_posts() ) {
+				 	 $the_query->the_post();
 
-					 	 echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
-					 	 if ( has_post_thumbnail() ) {
-							//if the post has a thumbnail image show it:
-							the_post_thumbnail();
-						 } else if(has_excerpt()){
-							// else if it has an exerpt statement, show it:
-							the_excerpt();
-							
-						 } 
+				 	 ?>
+			<div class="row">
+				<div class="col-sm-12 related-work"> <?php
 
-					 	 ?>
-					 	 	
-					</div>
-				</div><?php
-					 }
+				 	 echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
+				 	 if ( has_post_thumbnail() ) {
+						//if the post has a thumbnail image show it:
+						the_post_thumbnail();
+					 } else if(has_excerpt()){
+						// else if it has an exerpt statement, show it:
+						the_excerpt();
+						
+					 } 
 
-				}else{}
-				wp_reset_postdata();
+				 	 ?>
+				 	 	
+				</div>
+			</div><?php
+				 }
+
+			}else{}
+			wp_reset_postdata();
 
 
 		?>
