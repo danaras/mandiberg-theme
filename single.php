@@ -66,14 +66,18 @@
 			$menuItems = wp_get_nav_menu_items("Category Menu");
 			// select menu category items
 
-			print_r($menuItems);
+			//print_r($menuItems);
 			
 			$menuCategories = [];
 
 			foreach ($menuItems as $menuItem) {
 				// get/add ID of each menu item to array
-				$menuID = $menuItem->ID;
+				if($menuItem->object == "category"){
+					$menuID = $menuItem->ID;
 				array_push($menuCategories, $menuID);
+				//print_r($menuItem);
+				}
+				
 
 			}
 
