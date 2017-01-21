@@ -114,7 +114,7 @@ if(cms_is_in_menu( 'category menu' )){
 	foreach ($posts_array as $post) {
 
 		if ($counter === 0) {
-				?> <div class="row"> <?php
+			?> <div class="row"> <?php
 		
 		}	
 		$counter = $counter + 1;
@@ -126,7 +126,8 @@ if(cms_is_in_menu( 'category menu' )){
 	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
 			if ( has_post_thumbnail() ) {
 				//if the post has a thumbnail image show it:
-				the_post_thumbnail();
+				the_post_thumbnail('large');
+
 			} else if(has_excerpt()){
 				// else if it has an exerpt statement, show it:
 				the_excerpt();
@@ -189,7 +190,8 @@ if(cms_is_in_menu( 'category menu' )){
 				echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
 						if ( has_post_thumbnail() ) {
 							//if the post has a thumbnail image show it:
-							the_post_thumbnail();
+							the_post_thumbnail('large');
+
 						} else if(has_excerpt()){
 							// else if it has an exerpt statement, show it:
 							the_excerpt();
