@@ -65,6 +65,8 @@
 
 			$menuItems = wp_get_nav_menu_items("Category Menu");
 			// select menu category items
+
+			print_r($menuItems);
 			
 			$menuCategories = [];
 
