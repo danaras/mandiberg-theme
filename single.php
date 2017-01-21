@@ -80,6 +80,7 @@
 			    'tag__in' => $tagIDArray,
 			    'orderby'   => 'rand',
 			    'posts_per_page' => 3,
+			    'category__in' => array(  )
 			    ); // filter for posts
 
 				// query for the posts if ther are three
