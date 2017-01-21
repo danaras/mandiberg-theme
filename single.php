@@ -86,6 +86,7 @@
 			$term_slug = $t[0]->slug; //slug of tag
 			$term = get_term_by('name', $term_name, $taxonomy);
 			$tagPostLength = $term->count; // amount of posts this tag contains
+
 			$tagIDArray = [];
 
 			foreach ($t as $givenTag) {
@@ -106,6 +107,8 @@
 			    'posts_per_page' => 3,
 			    'category__in' => $menuCategories
 			    ); // filter for posts
+				
+				print_r($args);
 
 				// query for the posts if ther are three
 				$the_query = new WP_Query( $args );
