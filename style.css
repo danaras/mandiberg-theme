@@ -11,14 +11,19 @@ Version: 1.0
 /**
  * Table of Contents:
  *
-
-
-1. basic html elements
-2. menu
-3. project list styling
-4. page
-5. footer section
-
+ *
+ *
+ *	1. basic html elements
+ *	2. menu
+ *	3. project list styling
+ *	4. page
+ *	5. lightbox
+ *	6. related works
+ *	7. footer section
+ *
+ * 
+ * 
+ *
  */
 
 
@@ -146,6 +151,22 @@ header{
 }
 
 
+/*
+
+.category-section-##
+
+	.category
+		.active
+		.notactive
+
+	.subcategories > .subcategory    .select
+		.sub-active
+		.sub-notactive
+
+
+*/
+
+
 
 /* project list styling */
 
@@ -208,6 +229,19 @@ header{
 	height: auto;
 }
 
+.col-md-8 >img,
+.col-md-8 > a > img,
+.col-md-8 > p > a > img,
+.col-md-8 > p > img,
+.col-md-8 > h1 > img,
+.col-md-8 > h2 > img,
+.col-md-8 > h3 > img,
+.col-md-8 > h4 > img,
+.col-md-8 > h5 > img,
+.col-md-8 > h6 > img{
+	
+}
+
 .col-md-8 > h1, 
 .col-md-8 > h2, 
 .col-md-8 > h3, 
@@ -235,27 +269,57 @@ header{
 
 
 
-/*
-
-.category-section-##
-
-	.category
-		.active
-		.notactive
-
-	.subcategories > .subcategory    .select
-		.sub-active
-		.sub-notactive
 
 
-*/
 
-/* footer section */
+/* lightbox */
 
-.footer-below{
-	margin-top: 70px;
-	border-top: solid 2px black;
-}
+	.lightbox-frame{
+		display: none;
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		top: 0px;
+		left: 0px;
+		z-index: 1000;
+		text-align: center;
+
+	}
+	.lightbox-background{
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		top: 0px;
+		left: 0px;
+		background-color: black;
+		opacity: 0.9;
+		cursor: zoom-out;
+
+	}
+
+	.helper {
+	    display: inline-block;
+	    height: 100%;
+	    vertical-align: middle;
+	    text-align: center;
+	}
+
+	.displayed-image{
+		position: relative;
+		display: inline-block;
+		text-align: center;
+		width:100%;
+    	max-width:900px;
+		height: auto;
+		margin: 0 auto;
+		vertical-align: middle;
+		box-shadow: 1px 1px 15px 0px gray;
+
+	}
+
+
+
+/* related works */
 
 .related-works{
 	margin-top: 0px;
@@ -289,6 +353,17 @@ header{
 .related-work{
 	max-width: 800px;
 }
+
+
+
+/* footer section */
+
+.footer-below{
+	margin-top: 70px;
+	border-top: solid 2px black;
+}
+
+
 
 footer{
 	display: block;

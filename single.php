@@ -12,7 +12,7 @@
 ?>
 
 <div id="barba-wrapper">
-	<div class="barba-container" data-namespace="homepage">
+	<div class="barba-container" data-namespace="postpage">
 		<?php
 
 			$Parsedown = new Parsedown();
@@ -20,27 +20,18 @@
 		// Start the loop.
 		while ( have_posts() ) : the_post();
 
-			//get_template_part( 'content', get_post_format() );
 
 			?>
-		<!-- <div class="col-md-12"> 
-			<?php
-			//echo $post->post_title;
-			?>
-		</div> -->
 		<div class="row">
-		<div class="col-md-8">
-		<?php
-
-			$content = $post->post_content;
-			echo $Parsedown->text($content);
-
-		//		echo $post->post_content;
+			<div class="col-md-8 post-content">
+			<?php
+				$content = $post->post_content;
+				echo $Parsedown->text($content);
+				//	echo $post->post_content;
 			?>
-		</div>
+			</div>
 		
 			<?php
-			
 
 			$categories = get_the_category();
 			if ( ! empty( $categories ) ) {
@@ -53,12 +44,6 @@
 			//if ( comments_open() || get_comments_number() ) :
 			//	comments_template();
 			// endif;
-			?> 
-
-
-			
-		
-			<?php
 
 			$t = wp_get_post_tags($post->ID);
 			
@@ -69,7 +54,7 @@
 				
 			?> 
 			<div class="col-md-4 related-works">
-			<h1>Related Works</h1>
+				<h1>Related Works</h1>
 			<?php
 
 			$taxonomy = 'post_tag';
@@ -104,7 +89,9 @@
 					 while ( $the_query->have_posts() ) {
 					 	 $the_query->the_post();
 
-					 	 ?><div class="row"><div class="col-sm-12 related-work"> <?php
+					 	 ?>
+				<div class="row">
+					<div class="col-sm-12 related-work"> <?php
 
 					 	 echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
 					 	 if ( has_post_thumbnail() ) {
@@ -116,14 +103,19 @@
 							
 						 } 
 
-					 	 ?></div></div><?php
+					 	 ?>
+					 	 	
+					</div>
+				</div><?php
 					 }
 
 				}else{}
 				wp_reset_postdata();
 
 
-				?></div> <?php
+		?>
+			</div> 
+		<?php
 
 			}
 			// Previous/next post navigation.
@@ -136,13 +128,19 @@
 			// 		'<span class="post-title">%title</span>',
 			// ) );
 			?>
-			</div>
+		</div>
 			<?php
 		// End the loop.
 		endwhile;
 		?>
 
 
+        <div class="lightbox-frame">
+          <div class="lightbox-background">
+          </div>
+          	<span class="helper"></span>
+            <img class="displayed-image" src="">
+        </div>
 
 
 
