@@ -103,11 +103,11 @@
 				    'post_type' => 'post',
 				    'orderby'   => 'rand',
 				    'posts_per_page' => 3,
-				    'cat' => $menuCategories, 
+				    'category__in' => array( ), 
 				    'tag__in' => $tagIDArray
 			    ); // filter for posts
 
-			    // array( ) is for all categories...s
+			    // array( ) is for all categories...s $menuCategories
 				
 				print_r($args);
 
