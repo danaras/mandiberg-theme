@@ -267,7 +267,9 @@ header{
 	max-width: 800px;
 }
 
-
+blockquote{
+	border-left: 2px solid black;
+}
 
 
 
