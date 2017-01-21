@@ -33,13 +33,13 @@
 		
 			<?php
 
-			$categories = get_the_category();
-			if ( ! empty( $categories ) ) {
+			// $categories = get_the_category();
+			// if ( ! empty( $categories ) ) {
 			    //echo '<br />'.esc_html( $categories[1]->name );   
-				foreach ($categories as $category) {
+			// 	foreach ($categories as $category) {
 					//echo '<br/>'.$category->name;
-				}
-			}
+			// 	}
+			// }
 			// If comments are open, load up the comment template.
 			//if ( comments_open() || get_comments_number() ) :
 			//	comments_template();
@@ -53,109 +53,99 @@
 			if ($tagLength >= 1) {
 				
 			?> 
-			<div class="col-md-4 related-works">
-				<h1>Related Works</h1>
-			<?php
+				<div class="col-md-4 related-works">
+					<h1>Related Works</h1>
+				<?php
 
-			/* get categories presented in menu */
+				/* get categories presented in menu */
 
-			//$menu = wp_get_nav_menu_object( "Category Menu" );
+				//$menu = wp_get_nav_menu_object( "Category Menu" );
 
-			//print_r($menu);
+				//print_r($menu);
 
-			$menuItems = wp_get_nav_menu_items("Category Menu");
-			// select menu category items
+				$menuItems = wp_get_nav_menu_items("Category Menu");
+				// select menu category items
 
-			//print_r($menuItems);
-			
-			$menuCategories = [];
+				//print_r($menuItems);
+				
+				$menuCategories = [];
 
-			foreach ($menuItems as $menuItem) {
-				// get/add ID of each menu item to array
-				if($menuItem->object == "category"){
-					$menuID = $menuItem->ID;
-				array_push($menuCategories, $menuID);
-				//print_r($menuItem);
+				foreach ($menuItems as $menuItem) {
+					// get/add ID of each menu item to array
+					if($menuItem->object === "category"){
+						$menuID = $menuItem->ID;
+					array_push($menuCategories, $menuID);
+					//print_r($menuItem);
+					}
+					
+
 				}
+
+				$taxonomy = 'post_tag';
+				$term_name = $t[0]->name; // name of tag
+				$term_slug = $t[0]->slug; //slug of tag
+				$term = get_term_by('name', $term_name, $taxonomy);
+				$tagPostLength = $term->count; // amount of posts this tag contains
+
+				$tagIDArray = [];
+
+				foreach ($t as $givenTag) {
+					
+					$givenTagID = $givenTag->term_id;
+
+					array_push($tagIDArray, $givenTagID);
+
+				}
+					# choose 3 random ones and display
+					
+					# search query
+				$args = array(
+				    'post_type' => 'post',
+				    'orderby'   => 'rand',
+				    'posts_per_page' => 3,
+				    'cat' => $menuCategories, 
+				    'tag__in' => $tagIDArray
+			    ); // filter for posts
+
+			    // array( ) is for all categories...s
 				
+				print_r($args);
 
-			}
+				$the_query = new WP_Query( $args );
+				if ( $the_query->have_posts() ) {
 
-			$taxonomy = 'post_tag';
-			$term_name = $t[0]->name; // name of tag
-			$term_slug = $t[0]->slug; //slug of tag
-			$term = get_term_by('name', $term_name, $taxonomy);
-			$tagPostLength = $term->count; // amount of posts this tag contains
+					 while ( $the_query->have_posts() ) {
+					 	 $the_query->the_post();
 
-			$tagIDArray = [];
+					 	 ?>
+				<div class="row">
+					<div class="col-sm-12 related-work"> <?php
 
-			foreach ($t as $givenTag) {
-				
-				$givenTagID = $givenTag->term_id;
+					 	 echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
+					 	 if ( has_post_thumbnail() ) {
+							//if the post has a thumbnail image show it:
+							the_post_thumbnail();
+						 } else if(has_excerpt()){
+							// else if it has an exerpt statement, show it:
+							the_excerpt();
+							
+						 } 
 
-				array_push($tagIDArray, $givenTagID);
+					 	 ?>
+					 	 	
+					</div>
+				</div><?php
+					 } //while end
 
-			}
-				# choose 3 random ones and display
-				
-				# search query
-			$args = array(
-			    'post_type' => 'post',
-			    'orderby'   => 'rand',
-			    'posts_per_page' => 3,
-			    'category__in' => $menuCategories, 
-			    'tag__in' => $tagIDArray
-		    ); // filter for posts
+				}else{}
+				wp_reset_postdata();
 
-		    // array( ) is for all categories...s
-			
-			print_r($args);
-
-			// query for the posts if ther are three
-			$the_query = new WP_Query( $args );
-			if ( $the_query->have_posts() ) {
-
-				 while ( $the_query->have_posts() ) {
-				 	 $the_query->the_post();
-
-				 	 ?>
-			<div class="row">
-				<div class="col-sm-12 related-work"> <?php
-
-				 	 echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
-				 	 if ( has_post_thumbnail() ) {
-						//if the post has a thumbnail image show it:
-						the_post_thumbnail();
-					 } else if(has_excerpt()){
-						// else if it has an exerpt statement, show it:
-						the_excerpt();
-						
-					 } 
-
-				 	 ?>
-				 	 	
-				</div>
-			</div><?php
-				 }
-
-			}else{}
-			wp_reset_postdata();
-
-
-		?>
-			</div> 
+			?>
+				</div> 
 		<?php
 
 			}
-			// Previous/next post navigation.
-			// the_post_navigation( array(
-			// 	'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( '', 'twentyfifteen' ) . '</span> ' .
-			// 		'<span class="screen-reader-text">' . __( 'Next post:', 'twentyfifteen' ) . '</span> ' .
-			// 		'<span class="post-title">%title</span>',
-			// 	'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( '', 'twentyfifteen' ) . '</span> ' .
-			// 		'<span class="screen-reader-text">' . __( 'Previous post:', 'twentyfifteen' ) . '</span> ' .
-			// 		'<span class="post-title">%title</span>',
-			// ) );
+
 			?>
 		</div>
 			<?php
