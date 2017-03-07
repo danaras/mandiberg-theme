@@ -12,7 +12,6 @@ get_header();
 //get_template_part( 'Parsedown' );  // includes parsedown (markdown interpreter) to display posts in markdown format
 
 ?>
-
 <!-- barba js wrapper for smooth transitions -->
 <div id="barba-wrapper">
 	<div class="barba-container" data-namespace="homepage">
@@ -187,7 +186,7 @@ if(cms_is_in_menu( 'category menu' )){
 		        ?> 
 				<div class="col-md-4">
 				<?php 
-				echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
+				echo '<a href="'.get_permalink().'"><h1>'.get_the_title().'</h1>';
 						if ( has_post_thumbnail() ) {
 							//if the post has a thumbnail image show it:
 							the_post_thumbnail();
@@ -197,6 +196,7 @@ if(cms_is_in_menu( 'category menu' )){
 							the_excerpt();
 							
 						} 
+				echo '</a>';
 						//else the post just shows the title
 				
 				// print_r($post);

@@ -87,7 +87,7 @@ if ($cat_id) {
 	?> 
 	<div class="col-md-4">
 	<?php 
-	echo '<h1><a href="'.get_permalink().'">'.apply_filters( 'post_title', $post->post_title.'</a></h1>' );
+	echo '<a href="'.get_permalink().'"><h1>'.apply_filters( 'post_title', $post->post_title.'</h1>' );
 			if ( has_post_thumbnail() ) {
 				//if the post has a thumbnail image show it:
 				the_post_thumbnail();
@@ -100,6 +100,7 @@ if ($cat_id) {
 				the_excerpt();
 				
 			} 
+	echo '</a>';
 			//else the post just shows the title
 	
 	// print_r($post);
@@ -151,7 +152,7 @@ if ($cat_id) {
 		        ?> 
 				<div class="col-md-4">
 				<?php 
-				echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
+				echo '<a href="'.get_permalink().'"><h1>'.get_the_title().'</h1>';
 						if ( has_post_thumbnail() ) {
 							//if the post has a thumbnail image show it:
 							the_post_thumbnail();
@@ -160,6 +161,8 @@ if ($cat_id) {
 							the_excerpt();
 							
 						} 
+
+				echo '</a>';
 						//else the post just shows the title
 				
 				// print_r($post);

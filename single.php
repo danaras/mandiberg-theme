@@ -121,7 +121,7 @@
 				<div class="row">
 					<div class="col-sm-12 related-work"> <?php
 
-					 	 echo '<h1><a href="'.get_permalink().'">'.get_the_title().'</a></h1>';
+					 	 echo '<a href="'.get_permalink().'"><h1>'.get_the_title().'</h1>';
 					 	 if ( has_post_thumbnail() ) {
 							//if the post has a thumbnail image show it:
 							the_post_thumbnail();
@@ -130,6 +130,8 @@
 							the_excerpt();
 							
 						 } 
+
+						 echo '</a>';
 
 					 	 ?>
 					 	 	
