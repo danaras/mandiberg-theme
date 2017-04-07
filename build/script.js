@@ -11,6 +11,10 @@ Version: 1.0
 /**
  * Table of Contents:
  *
+ * - MENU
+ * - LIGHT BOX
+ * - BARBA
+ * - 
 
  */
 
@@ -66,19 +70,6 @@ Version: 1.0
 
         })
 
-       
-
-        /*
-
-        <div class="lightbox-frame">
-          <div class="lightbox-background">
-            <img class="displayed-image" src="' + imgURL + '">
-          </div>
-        </div>
-
-        */
-
-
       })
 
       $(".lightbox-background").click(function(){
@@ -92,9 +83,7 @@ Version: 1.0
         })
       })
 
-  }
-
-
+  } // end of light box function
 
   lighbox();
 
@@ -120,6 +109,23 @@ Version: 1.0
     return HideShowTransition;
   };
 
+
+
+// FOR READ MORE
+
+if ($('div').hasClass("post-content") && $(".post-content").children("p").length > 4) {
+
+ $(".post-content > p:nth-of-type(3)").after("<div class='readmore'><div><span>READ MORE</span></div></div>")
+ $(".post-content > div.readmore ~ *").wrapAll("<span class='long-read'></span>")
+
+ $(".readmore").click(function(){
+  $(".readmore").fadeOut(200, function(){
+    $(".long-read").fadeIn(500)
+    $(".long-read").css({"margin-top": '0px', 'transform' : 'translateY(0px)'})
+  })
+ })
+
+} // end of readmore function
 
 
 	

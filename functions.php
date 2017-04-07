@@ -12,7 +12,11 @@ ToC
 */
 
 	//hides admin bar (REMOVE BEFORE PUBLISHING:)
-	show_admin_bar( false );
+	//show_admin_bar( false );
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+    	show_admin_bar( false );
+	}
 
 	//function to initiate any js files, etc
 	function mandiberg_scripts() {
@@ -189,6 +193,24 @@ ToC
 	    } //end of end_el function 
 
 	} //end of extends walker function
+
+
+// BACKEND MEDIA (CUSTOM IMAGE SIZES)
+
+if ( function_exists( 'add_image_size' ) ) {
+	add_image_size( 'post-size', 1000); //(resized)
+}
+add_filter('image_size_names_choose', 'my_image_sizes');
+
+function my_image_sizes($sizes) {
+	$addsizes = array(
+	"post-size" => __( "Post Image Size")
+	);
+	$newsizes = array_merge($sizes, $addsizes);
+	return $newsizes;
+}
+
+
 
 
 /*

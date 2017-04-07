@@ -78,7 +78,7 @@ if ($cat_id) {
 	foreach ($posts_array as $post) {
 
 	if ($counter === 0) {
-			?> <div class="row"> <?php
+			?> <div class="row row-eq-height"> <?php
 	
 	}	
 		$counter = $counter + 1;
@@ -111,7 +111,7 @@ if ($cat_id) {
 	//echo apply_filters( 'guid', $post->guid );
 		if($counter % 3 === 0 && $counter !== $arrayLength) {
 		     
-        	?> </div><div class="row"><?php 
+        	?> </div><div class="row row-eq-height"><?php 
         } else if ($counter === $arrayLength){
         	?> </div> <?php
         } else if($counter % 3 === 0 && $counter === $arrayLength){
@@ -139,7 +139,7 @@ if ($cat_id) {
 		    while ( $the_query->have_posts() ) {
 
 		    	if ($number === 0) {
-					?> <div class="row"> <?php
+					?> <div class="row row-eq-height"> <?php
 			
 				}
 				$number = $number + 1;
@@ -174,7 +174,7 @@ if ($cat_id) {
 
 				if($number % 3 === 0 && $number !== $arrayLength) {
 			     
-		        	?> </div><div class="row" ><?php 
+		        	?> </div><div class="row row-eq-height" ><?php 
 		        } else if ($number === $arrayLength){
 		        	?> </div> <?php
 		        } else if($number % 3 === 0 && $number === $arrayLength){

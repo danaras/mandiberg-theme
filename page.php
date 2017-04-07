@@ -143,7 +143,7 @@ if(cms_is_in_menu( 'category menu' )){
 		
 			if($counter % 3 === 0 && $counter !== $arrayLength) {
 		     
-	        	?> </div><div class="row"><?php 
+	        	?> </div><div class="row row-eq-height"><?php 
 	        } else if ($counter === $arrayLength){
 	        	?> </div> <?php
 	        } else if($counter % 3 === 0 && $counter === $arrayLength){
@@ -173,7 +173,7 @@ if(cms_is_in_menu( 'category menu' )){
 		    while ( $the_query->have_posts() ) {
 
 		    	if ($number === 0) {
-					?> <div class="row"> <?php
+					?> <div class="row row-eq-height"> <?php
 			
 				}
 				$number = $number + 1;
@@ -208,7 +208,7 @@ if(cms_is_in_menu( 'category menu' )){
 
 				if($number % 3 === 0 && $number !== $arrayLength) {
 			     
-		        	?> </div><div class="row" ><?php 
+		        	?> </div><div class="row row-eq-height" ><?php 
 		        } else if ($number === $arrayLength){
 		        	?> </div> <?php
 		        } else if($number % 3 === 0 && $number === $arrayLength){
