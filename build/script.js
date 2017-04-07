@@ -129,9 +129,8 @@ if ($('div').hasClass("post-content") && $(".post-content").children("p").length
 } // end of readmore function
 
 
+
 // FOR HOMEPAGE PROJECT CARD HEIGHT (for when titles become two lines)
-
-
 
 if ($('.barba-container').attr("data-namespace") === "homepage") {
 
@@ -158,26 +157,16 @@ if ($('.barba-container').attr("data-namespace") === "homepage") {
       
       if( value !== cardTitleNumber){
       cardTitles[value].style.height =  cardTitleHeight + "px"
-      //cardTitles[value].css("background-color", "blue")
-      console.log(value, cardTitleNumber)
 
-      } else{
-      //cardTitles[value].css("background-color", "red")
-    }
+      } 
 
 
-    }
+    } // end of second foreach
 
-     
-     
-
-     } // end of function
+  } // end of function
 
 
-
-  
-
-  resizeTitle()
+  resizeTitle() // on load
 
 
   $(window).resize(function(){
