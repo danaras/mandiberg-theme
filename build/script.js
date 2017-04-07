@@ -14,7 +14,8 @@ Version: 1.0
  * - MENU
  * - LIGHT BOX
  * - BARBA
- * - 
+ * - READ MORE
+ * - HOMEPAGE CARD HEIGHT
 
  */
 
@@ -126,6 +127,66 @@ if ($('div').hasClass("post-content") && $(".post-content").children("p").length
  })
 
 } // end of readmore function
+
+
+// FOR HOMEPAGE PROJECT CARD HEIGHT (for when titles become two lines)
+
+
+
+if ($('.barba-container').attr("data-namespace") === "homepage") {
+
+
+  var resizeTitle = function(){
+    var cardTitles = $(".col-md-4 > a > h1"),
+    cardTitleHeight = 0,
+    cardTitleLength = 0, 
+    cardTitleNumber = 0;
+   
+    for (var i = 0; i < cardTitles.length; i++) {   
+
+      if (cardTitles[i].innerHTML.length > cardTitleLength) {
+         cardTitleNumber = i
+         cardTitleLength = cardTitles[i].innerHTML.length // get title with longest name
+         cardTitleHeight = cardTitles[i].offsetHeight // get current height
+      }
+     
+    } // end of first foreach
+
+    console.log(cardTitleNumber, cardTitleLength, cardTitleHeight)
+
+    for (var value = 0; value < cardTitles.length; value++) {
+      
+      if( value !== cardTitleNumber){
+      cardTitles[value].style.height =  cardTitleHeight + "px"
+      //cardTitles[value].css("background-color", "blue")
+      console.log(value, cardTitleNumber)
+
+      } else{
+      //cardTitles[value].css("background-color", "red")
+    }
+
+
+    }
+
+     
+     
+
+     } // end of function
+
+
+
+  
+
+  resizeTitle()
+
+
+  $(window).resize(function(){
+    resizeTitle()
+  })
+
+
+} // end of hompage project card conditional
+
 
 
 	

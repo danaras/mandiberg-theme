@@ -191,9 +191,18 @@ header{
 }
 
 .col-md-4 > a > h1 {
+	display: table;
+	position: relative;
 	color: black;
 	font-size: 24px;
 	line-height: 32px;
+	clear: both;
+
+}
+
+.col-md-4 > a > p{
+	display: block;
+	position: relative;
 }
 
 .screen-reader-text{
@@ -208,6 +217,8 @@ header{
 .col-md-4 > a >img{
 	width: 100%;
 	height: auto;
+	display: block;
+	position: relative;
 }
 
 .col-md-4 > a:hover .col-md-4 > a > h1{
@@ -502,14 +513,16 @@ hr{
 .related-work > a > img{
 	max-width: 100%;
 	height: auto;
+	padding-top: 4px;
 	padding-bottom: 4px;
+	display: block;
 }
 
 .related-work > a > h1{
 	position: relative;
-	display: inline-block;
+	display: inline;
 	margin-bottom: 4px;
-	height: 22px;
+	
 	padding-bottom: 0px;
 	border-bottom: 2px white solid;
 
@@ -614,6 +627,8 @@ footer > .col-sm-10 {
 	.col-md-4 > a > h1 {
 		font-size: 40px;
 		line-height: 56px;
+		display: block;
+		position: relative;
 	}
 
 	footer * {
