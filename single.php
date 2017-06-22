@@ -27,6 +27,8 @@
 			<?php
 				$content = $post->post_content;
 				echo $Parsedown->text($content);
+				$posttitle = $post->post_title;
+
 				//	echo $post->post_content;
 			?>
 			</div>
@@ -102,7 +104,7 @@
 				$args = array(
 				    'post_type' => 'post',
 				    'orderby'   => 'rand',
-				    'posts_per_page' => 3,
+				    //'posts_per_page' => 3,
 				    'category__in' => array(), 
 				    'tag__in' => $tagIDArray
 			    ); // filter for posts
@@ -116,6 +118,11 @@
 
 					 while ( $the_query->have_posts() ) {
 					 	 $the_query->the_post();
+
+					 	if ($posttitle != get_the_title()) {
+					 		
+					 	
+
 
 					 	 ?>
 				<div class="row">
@@ -137,9 +144,15 @@
 					 	 	
 					</div>
 				</div><?php
+					 
+					} // if post title is equivilant end
 					 } //while end
 
-				}else{}
+				}else{
+
+					// theoretically add category related works...
+
+				}
 				wp_reset_postdata();
 
 			?>
