@@ -198,7 +198,7 @@ ToC
 // BACKEND MEDIA (CUSTOM IMAGE SIZES)
 
 if ( function_exists( 'add_image_size' ) ) {
-	add_image_size( 'post-size', 1000); //(resized)
+	add_image_size( 'post-size', 1600); //(resized)
 }
 add_filter('image_size_names_choose', 'my_image_sizes');
 

@@ -496,7 +496,7 @@ hr{
 }
 
 .related-work >h1{
-	margin-bottom: 4px;
+	margin-bottom: 20px;
 	margin-top: 24px;
 }
 
@@ -504,8 +504,8 @@ hr{
 .related-work > a{
 	position: relative;
 	display: block;
-	padding-bottom: 4px;
-	border-bottom: solid 2px black;
+	padding-bottom: 12px;
+	
 	margin-bottom: 24px;
 
 }
@@ -514,6 +514,7 @@ hr{
 	max-width: 100%;
 	height: auto;
 	padding-top: 4px;
+	margin-top: 8px;
 	padding-bottom: 4px;
 	display: block;
 }
@@ -672,10 +673,99 @@ footer > .col-sm-10 {
 		line-height: 56px; 
 	}
 
+	.col-md-8 >img,
+	.col-md-8 > a > img,
+	.col-md-8 > p > a > img,
+	.col-md-8 > p > img,
+	.col-md-8 > h1 > img,
+	.col-md-8 > h2 > img,
+	.col-md-8 > h3 > img,
+	.col-md-8 > h4 > img,
+	.col-md-8 > h5 > img,
+	.col-md-8 > h6 > img, 
+	.col-md-8 > p > div,
+	.col-md-8 > h1 > div,
+	.col-md-8 > h2 > div,
+	.col-md-8 > h3 > div,
+	.col-md-8 > h4 > div,
+	.col-md-8 > h5 > div,
+	.col-md-8 > h6 > div,
+	.col-md-8 > span >img,
+	.col-md-8 > span > a > img,
+	.col-md-8 > span > p > a > img,
+	.col-md-8 > span > p > img,
+	.col-md-8 > span > h1 > img,
+	.col-md-8 > span > h2 > img,
+	.col-md-8 > span > h3 > img,
+	.col-md-8 > span > h4 > img,
+	.col-md-8 > span > h5 > img,
+	.col-md-8 > span > h6 > img, 
+	.col-md-8 > span > p > div,
+	.col-md-8 > span > h1 > div,
+	.col-md-8 > span > h2 > div,
+	.col-md-8 > span > h3 > div,
+	.col-md-8 > span > h4 > div,
+	.col-md-8 > span > h5 > div,
+	.col-md-8 > span > h6 > div,
+	.col-md-8 > iframe,
+	.col-md-8 > p > iframe,
+	.col-md-8 > h1 > iframe,
+	.col-md-8 > h2 > iframe,
+	.col-md-8 > h3 > iframe,
+	.col-md-8 > h4 > iframe,
+	.col-md-8 > h5 > iframe,
+	.col-md-8 > h6 > iframe,
+	.col-md-8 > span > iframe,
+	.col-md-8 > span > p > iframe,
+	.col-md-8 > span > h1 > iframe,
+	.col-md-8 > span > h2 > iframe,
+	.col-md-8 > span > h3 > iframe,
+	.col-md-8 > span > h4 > iframe,
+	.col-md-8 > span > h5 > iframe,
+	.col-md-8 > span > h6 > iframe{
+
+	max-width: 100%;
+
+	}
 
 
+	.col-md-8 > p, .col-md-8 > span > p, .related-work, .readmore {
+		max-width: 98vw;
+	}
+
+	.related-work > a > h1, .related-work > a > p, .long-read > p{
+		font-size: 40px !important;
+		line-height: 56px;
+		letter-spacing: 0.5px;
+	}
+
+
+	.readmore  > div {
+		display: block;
+		position: relative;
+		margin:0 auto;
+		margin-top: 48px;
+		margin-bottom: 48px;
+		width: 200px;
+		height: 200px;
+		border-radius: 100px;
+		text-align: center;
+		border: solid 2px black;
+		text-transform: uppercase;
+		font-size: 24px;
+
+	}
+
+	.readmore > div > span{
+		position: relative;
+		display: block;
+		width: 150px;
+		padding-top: 40px;
+		height: 60px;
+		vertical-align: middle;
+		margin: 0 auto;
+	}
 
 }
-
 
 

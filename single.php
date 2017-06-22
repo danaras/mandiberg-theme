@@ -54,7 +54,7 @@
 				
 			?> 
 				<div class="col-md-4 related-works">
-					<h1>Related Works</h1>
+					<h1>Related</h1>
 				<?php
 
 				/* get categories presented in menu */
