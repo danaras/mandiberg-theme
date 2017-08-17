@@ -98,6 +98,8 @@ if(cms_is_in_menu( 'category menu' )){
 	<?php
 		$Parsedown = new Parsedown();
 		$content = $post->post_content;
+		//$content = strip_shortcodes( $content );
+		$content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $content);
 		echo $Parsedown->text($content);
 	//echo $content;
 

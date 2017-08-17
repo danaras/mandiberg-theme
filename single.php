@@ -26,6 +26,8 @@
 			<div class="col-md-8 post-content">
 			<?php
 				$content = $post->post_content;
+				//$content = strip_shortcodes( $content );
+				$content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $content);
 				echo $Parsedown->text($content);
 				$posttitle = $post->post_title;
 
