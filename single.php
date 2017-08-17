@@ -54,11 +54,10 @@
 			// get quantity of tags attached... (array length)
 			$tagLength = count($t);
 			
-			if ($tagLength >= 1) {
+			if ($tagLength >= 1) { // if post has at least one tag associated with it
 				
 			?> 
 				<div class="col-md-4 related-works">
-					<h1>Related</h1>
 				<?php
 
 				/* get categories presented in menu */
@@ -85,24 +84,88 @@
 
 				}
 
+				
+
+				/*
+				1. initially filter just tags identical to the project name
+				2. then tags that...
+				3. remainder of tags
+
+
+				GOAL:
+				1. Url Slug "Print Wikipedia" from main post matches tag on the right nav post
+				2. Other tags on the main post match tag on the right nav post
+				
+				*/
+
+				$post_slug = $post->post_name; //get slug of this post
+				$tag_amount = sizeof($t);
+
 				$taxonomy = 'post_tag';
-				$term_name = $t[0]->name; // name of tag
-				$term_slug = $t[0]->slug; //slug of tag
-				$term = get_term_by('name', $term_name, $taxonomy);
+				$term_name = $t[0]->name; // name of first tag
+				$term_slug = $t[0]->slug; //slug of first tag
+				//echo $term_name;
+				//echo $t[1]->name;
+				//print_r($t);
+
+
+
+				foreach ($t as $main_tag) { // compare Post slug to slugs of associated tags
+
+					$tag_slug = $main_tag->slug;
+
+					if ($post_slug == $tag_slug) {
+						//echo $main_tag->name.'<br>';
+
+						$term_slug = $post_slug;
+
+					}
+
+
+				};
+				
+				//$term = get_term_by('name', $term_name, $taxonomy);
+
+				$term = get_term_by('slug', $term_slug, $taxonomy); //input new slug 
+				
+				//print_r($term);
+
+
 				$tagPostLength = $term->count; // amount of posts this tag contains
 
-				$tagIDArray = [];
+				$tagIDArray = []; // create array for tag IDs for query
+				$postTagIDArray = [];
+				array_push($tagIDArray, $term->term_id); // add this post's equivilant tag's id
+				array_push($postTagIDArray, $term->term_id);
 
-				foreach ($t as $givenTag) {
+
+
+				foreach ($t as $givenTag) { // random order of related Tags
 					
 					$givenTagID = $givenTag->term_id;
 
-					array_push($tagIDArray, $givenTagID);
-
-				}
-					# choose 3 random ones and display
+					if(!in_array($givenTagID, $tagIDArray)){ // if the tag ID isn't already in the array
+						array_push($tagIDArray, $givenTagID);
 					
-					# search query
+					} else{ // if the tag ID is already in the array, remove it
+						foreach (array_keys($tagIDArray, $givenTagID) as $removalKey){
+							unset($tagIDArray[$removalKey]);
+						}
+	
+					}
+				}
+				
+
+					# search query for tag equal to post slug
+				$post_args = array(
+				    'post_type' => 'post',
+				    'orderby'   => 'modified',
+				    //'posts_per_page' => 3,
+				    'category__in' => array(), 
+				    'tag__in' => $postTagIDArray
+			    ); // filter for posts
+
+					# search query for tags not identical to post slug
 				$args = array(
 				    'post_type' => 'post',
 				    'orderby'   => 'rand',
@@ -111,17 +174,37 @@
 				    'tag__in' => $tagIDArray
 			    ); // filter for posts
 
-			    // array( ) is for all categories...s $menuCategories
+			    // array( ) is for all categories... $menuCategories
 				
-				//print_r($args);
-
+				$the_first_query = new WP_Query( $post_args);
 				$the_query = new WP_Query( $args );
-				if ( $the_query->have_posts() ) {
 
-					 while ( $the_query->have_posts() ) {
-					 	 $the_query->the_post();
 
-					 	if ($posttitle != get_the_title()) {
+				/* 
+				if one of the queries has posts: 
+					- make title
+
+				if the first query has posts:
+					- list them
+					- create an array of posttitles
+
+				if the second query has posts:
+					- list them but exclude previous posts
+					*/
+
+
+				if ($the_query->have_posts() || $the_first_query->have_posts()) {
+					?><h1>Related</h1><?php
+				} 
+
+				$postTitleArray = [];
+
+				if ($the_first_query->have_posts() ){
+
+					 while ( $the_first_query->have_posts() ) {
+					 	 $the_first_query->the_post();
+
+					 	if ($posttitle != get_the_title()) { // if related post isn't current post
 					 		
 					 	
 
@@ -131,6 +214,8 @@
 					<div class="col-sm-12 related-work"> <?php
 
 					 	 echo '<a href="'.get_permalink().'"><h1>'.get_the_title().'</h1>';
+					 	 array_push($postTitleArray, get_the_title());
+
 					 	 if ( has_post_thumbnail() ) {
 							//if the post has a thumbnail image show it:
 							the_post_thumbnail();
@@ -149,8 +234,48 @@
 					 
 					} // if post title is equivilant end
 					 } //while end
+				} // end of first query
 
-				}else{
+
+
+
+				if ( $the_query->have_posts() ) {
+
+					 while ( $the_query->have_posts() ) {
+					 	 $the_query->the_post();
+
+					 	if ($posttitle != get_the_title()) { // if related post isn't current post
+					 		
+						 	if (!in_array(get_the_title(), $postTitleArray)) { // if this project isnt already displayed
+						 		
+						 	
+
+
+						 	 ?>
+					<div class="row">
+						<div class="col-sm-12 related-work"> <?php
+
+						 	 echo '<a href="'.get_permalink().'"><h1>'.get_the_title().'</h1>';
+						 	 if ( has_post_thumbnail() ) {
+								//if the post has a thumbnail image show it:
+								the_post_thumbnail();
+							 } else if(has_excerpt()){
+								// else if it has an exerpt statement, show it:
+								the_excerpt();
+								
+							 } 
+
+							 echo '</a>';
+
+						 	 ?>
+						 	 	
+						</div>
+					</div><?php
+					 	}
+					} // if post title is equivilant end
+					 } //while end
+
+				} else{
 
 					// theoretically add category related works...
 
