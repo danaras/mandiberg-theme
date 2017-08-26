@@ -201,6 +201,8 @@
 
 				$remainder = 7 - $the_first_query->post_count;  #has seven because it counts itself
 
+				echo $remainder;
+
 
 				# search query for tags not identical to post slug
 				$args = array(
@@ -218,7 +220,12 @@
 				$postTitleArray = [];
 
 				if ($the_first_query->have_posts() ){
-					?><h1>More from <?php echo $posttitle; ?> </h1> <?php
+					# needs to not show if only current title is displayed
+
+					if($the_first_query->post_count > 1){
+						?><h1>More from <?php echo $posttitle; ?> </h1> <?php
+					}
+
 					 while ( $the_first_query->have_posts() ) {
 					 	 $the_first_query->the_post();
 
