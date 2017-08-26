@@ -92,51 +92,79 @@
 				3. remainder of tags
 
 
-				GOAL:
-				1. Url Slug "Print Wikipedia" from main post matches tag on the right nav post
-				2. Other tags on the main post match tag on the right nav post
+				GOALS:
+				1. limit to 6 entries per project
 				
 				*/
 
 				$post_slug = $post->post_name; //get slug of this post
+
+				# $post_slug probably has a hyphen. but related tags dont. so we create a post_slug without a hyphen:
+
+				$hyphen_check = strpos($post_slug, '-');
+				if($hyphen_check){
+
+					$post_slug_nohyphen = str_replace('-','', $post_slug);
+
+				}
+
+
 				$tag_amount = sizeof($t);
 
+			//	echo $post_slug.'<br>';
+
 				$taxonomy = 'post_tag';
-				$term_name = $t[0]->name; // name of first tag
-				$term_slug = $t[0]->slug; //slug of first tag
-				//echo $term_name;
-				//echo $t[1]->name;
-				//print_r($t);
+				// $term_name = $t[0]->name; // name of first tag
+				// $term_slug = $t[0]->slug; //slug of first tag
+				$term_slug = $post_slug; # in case there is no match
+				$term_slug_nohyphen = $post_slug_nohyphen; # in case there's no match
 
 
+				// foreach ($t as $main_tag) { // compare Post slug to slugs of associated tags to see if the tags exist...
 
-				foreach ($t as $main_tag) { // compare Post slug to slugs of associated tags
+				// 	$tag_slug = $main_tag->slug;
 
-					$tag_slug = $main_tag->slug;
+				// 	if ($post_slug == $tag_slug) {
+				// 		# if a tag exists equivalent to the post's title, then use the slug
+				// 		$term_slug = $post_slug;  
 
-					if ($post_slug == $tag_slug) {
-						//echo $main_tag->name.'<br>';
+				// 	}
 
-						$term_slug = $post_slug;
+				// 	if($post_slug_nohyphen == $tag_slug){
+				// 		# if a tag exists equivalent to the post's title w/out a hyphen (potentially in addition to the hyphenated one)
+				// 		$term_slug_nohyphen = $post_slug_nohyphen;
 
-					}
+
+				// 	}
 
 
-				};
+				// };
 				
-				//$term = get_term_by('name', $term_name, $taxonomy);
-
-				$term = get_term_by('slug', $term_slug, $taxonomy); //input new slug 
-				
-				//print_r($term);
-
-
-				$tagPostLength = $term->count; // amount of posts this tag contains
-
 				$tagIDArray = []; // create array for tag IDs for query
 				$postTagIDArray = [];
+
+
+				# potentially hyphenated
+				$term = get_term_by('slug', $term_slug, $taxonomy); //input new slug
+				$tagPostLength = $term->count; // amount of posts this tag contains
+
 				array_push($tagIDArray, $term->term_id); // add this post's equivilant tag's id
 				array_push($postTagIDArray, $term->term_id);
+
+
+				#not hyphenated
+
+				if(!empty($term_slug_nohyphen)){
+					$term_nh  = get_term_by('slug', $term_slug_nohyphen, $taxonomy);
+					array_push($tagIDArray, $term_nh->term_id); // add this post's equivilant tag's id
+					array_push($postTagIDArray, $term_nh->term_id);
+
+				}
+				
+
+
+
+
 
 
 
@@ -146,61 +174,51 @@
 
 					if(!in_array($givenTagID, $tagIDArray)){ // if the tag ID isn't already in the array
 						array_push($tagIDArray, $givenTagID);
+						//echo $givenTagID." was added to the list of tag IDs for general query<br>";
 					
-					} else{ // if the tag ID is already in the array, remove it
+					} else{ # if the tag ID is already in the array, remove it
 						foreach (array_keys($tagIDArray, $givenTagID) as $removalKey){
 							unset($tagIDArray[$removalKey]);
 						}
 	
 					}
 				}
+
+
 				
 
-					# search query for tag equal to post slug
+				# search query for tag equal to post slug
 				$post_args = array(
 				    'post_type' => 'post',
 				    'orderby'   => 'modified',
-				    //'posts_per_page' => 3,
+				    'posts_per_page' => 7,
 				    'category__in' => array(), 
 				    'tag__in' => $postTagIDArray
 			    ); // filter for posts
 
-					# search query for tags not identical to post slug
+				
+				$the_first_query = new WP_Query( $post_args);
+
+				$remainder = 7 - $the_first_query->post_count;  #has seven because it counts itself
+
+
+				# search query for tags not identical to post slug
 				$args = array(
 				    'post_type' => 'post',
 				    'orderby'   => 'rand',
-				    //'posts_per_page' => 3,
+				    'posts_per_page' => $remainder,
 				    'category__in' => array(), 
 				    'tag__in' => $tagIDArray
 			    ); // filter for posts
 
-			    // array( ) is for all categories... $menuCategories
-				
-				$the_first_query = new WP_Query( $post_args);
+
 				$the_query = new WP_Query( $args );
-
-
-				/* 
-				if one of the queries has posts: 
-					- make title
-
-				if the first query has posts:
-					- list them
-					- create an array of posttitles
-
-				if the second query has posts:
-					- list them but exclude previous posts
-					*/
-
-
-				if ($the_query->have_posts() || $the_first_query->have_posts()) {
-					?><h1>Related</h1><?php
-				} 
+ 
 
 				$postTitleArray = [];
 
 				if ($the_first_query->have_posts() ){
-
+					?><h1>More from <?php echo $posttitle; ?> </h1> <?php
 					 while ( $the_first_query->have_posts() ) {
 					 	 $the_first_query->the_post();
 
@@ -240,6 +258,8 @@
 
 
 				if ( $the_query->have_posts() ) {
+
+					?><h1>Related</h1> <?php
 
 					 while ( $the_query->have_posts() ) {
 					 	 $the_query->the_post();
