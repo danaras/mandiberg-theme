@@ -201,7 +201,10 @@
 
 				$remainder = 7 - $the_first_query->post_count;  #has seven because it counts itself
 
-				echo $remainder;
+				if($remainder <= 1){
+					$remainder = 1;
+				}
+				//echo $remainder;
 
 
 				# search query for tags not identical to post slug
@@ -264,7 +267,7 @@
 
 
 
-				if ( $the_query->have_posts() ) {
+				if ( $the_query->have_posts() && $the_query->post_count > 1) {
 
 					?><h1>Related</h1> <?php
 
